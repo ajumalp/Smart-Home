@@ -1,56 +1,72 @@
 <ons-page id="addControlPage">
   <ons-toolbar>
-    <div class="left"><ons-back-button>Back</ons-back-button></div>
+    <div class="left">
+      <ons-back-button>Back</ons-back-button>
+    </div>
     <div class="center">Add Control</div>
     <div class="right">
       <ons-if platform="android">
-        <ons-toolbar-button component="button/save-task">
+        <ons-toolbar-button component="button/save-control">
           <ons-icon icon="md-save"></ons-icon>
         </ons-toolbar-button>
       </ons-if>
     </div>
   </ons-toolbar>
 
-  <ons-list-title>Add a new task</ons-list-title>
+  <ons-if platform="ios other">
+    <ons-list-title>Add a new control</ons-list-title>
+  </ons-if>
   <ons-list>
     <ons-list-item modifier="nodivider">
+      <ons-if class="left left-label">Caption</ons-if>
       <div class="center">
-        <ons-input id="title-input" type="text" placeholder="I want to..." float></ons-input>
+        <!-- <ons-input id="title-input" type="text" placeholder="I want to..." float></ons-input> -->
+        <ons-input id="caption-input" type="text" placeholder="Enter Caption" required></ons-input>
       </div>
     </ons-list-item>
-    <ons-list-item modifier="nodivider">
-      <div class="center">
-        <ons-input id="category-input" type="text" placeholder="Category" float></ons-input>
-      </div>
-    </ons-list-item>
-    <ons-list-item modifier="nodivider">
-      <div class="center">
-        <ons-input id="description-input" type="text" placeholder="Description" float></ons-input>
-      </div>
-    </ons-list-item>
-  </ons-list>
 
-  <ons-list-title>Other options</ons-list-title>
-  <ons-list>
     <ons-list-item modifier="nodivider">
-      <label class="center" for="inner-highlight-input">
-        Highlight?
-      </label>
-      <div class="right">
-        <ons-switch id="highlight-input" input-id="inner-highlight-input"></ons-switch>
-      </div>
+      <ons-if class="left left-label">Device</ons-if>
+      <ons-select id="device-select">
+        <option value="basic">Bed Room</option>
+        <option value="material">Kitchen</option>
+        <option value="underbar">Other</option>
+      </ons-select>
     </ons-list-item>
+
     <ons-list-item modifier="nodivider">
-      <label class="center" for="inner-urgent-input">
-        Is it urgent?
+      <ons-if class="left left-label">Category</ons-if>
+      <ons-select id="category-select">
+        <option value="basic">Bed Room</option>
+        <option value="material">Kitchen</option>
+        <option value="underbar">Other</option>
+      </ons-select>
+    </ons-list-item>
+
+    <ons-list-item modifier="nodivider">
+      <ons-if class="left left-label">Pin Type</ons-if>
+      <ons-select id="pinype-select">
+        <option value="basic">D0</option>
+        <option value="material">D1</option>
+        <option value="underbar">D2</option>
+        <option value="underbar">D4</option>
+      </ons-select>
+    </ons-list-item>
+
+    <ons-list-item tappable modifier="nodivider">
+      <label class="left">
+        <ons-checkbox input-id="hidePair-check"></ons-checkbox>
       </label>
-      <div class="right">
-        <ons-switch id="urgent-input" input-id="inner-urgent-input"></ons-switch>
-      </div>
+      <label for="hidePair-check" class="center">Hide Pair</label>
+
+      <label class="left">
+        <ons-checkbox style="padding-left: 20px;" input-id="inverted-check"></ons-checkbox>
+      </label>
+      <label for="inverted-check" class="center">Inverted</label>
     </ons-list-item>
   </ons-list>
 
   <ons-if platform="ios other">
-    <ons-button modifier="large" component="button/save-task">Add New Task</ons-button>
+    <ons-button modifier="large" component="button/save-control">Save Control</ons-button>
   </ons-if>
 </ons-page>

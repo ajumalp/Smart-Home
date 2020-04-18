@@ -1,11 +1,25 @@
 // App logic.
 window.myApp = {};
 
-document.addEventListener('init', function(event) {
+document.addEventListener('init', function (event) {
   var page = event.target;
 
   // Each page calls its own initialization controller.
-  if (myApp.controllers.hasOwnProperty(page.id)) {
+
+  if (page.hasAttribute('eClassName')) {
+    var varClassType = page.getAttribute('eClassName');
+
+    var varClass = null;
+    if (varClassType === 'DevicesController') {
+      varClass = myApp.controllers.devices;
+    }
+
+    if (varClass != null) {
+      varClass[page.id](page);
+    } else {
+      throw new Error('Invalid Class Reference');
+    }
+  } else if (myApp.controllers.hasOwnProperty(page.id)) {
     myApp.controllers[page.id](page);
   }
 
@@ -16,7 +30,7 @@ document.addEventListener('init', function(event) {
       && document.querySelector('#pendingTasksPage')
       && !document.querySelector('#pendingTasksPage ons-list-item')
     ) {
-      myApp.services.fixtures.forEach(function(data) {
+      myApp.services.fixtures.forEach(function (data) {
         myApp.services.tasks.create(data);
       });
     }

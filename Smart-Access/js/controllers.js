@@ -13,7 +13,6 @@ myApp.controllers = {
       document.querySelector('#mySplitter').left.toggle();
     };
 
-    // Set button functionality to push 'new_task.html' page.
     Array.prototype.forEach.call(page.querySelectorAll('[component="button/add-control"]'), function (element) {
       element.onclick = function () {
         ons.openActionSheet({
@@ -91,7 +90,6 @@ myApp.controllers = {
   // Details Task Page Controller //
   ///////////////////////////////
   detailsTaskPage: function (page) {
-    return;
     // Get the element passed as argument to pushPage.
     var element = page.data.element;
 

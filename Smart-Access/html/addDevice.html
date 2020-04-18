@@ -1,0 +1,38 @@
+<ons-page id="addDevicePage" eClassName="DevicesController">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>Back</ons-back-button>
+        </div>
+        <div class="center">Add Device</div>
+        <div class="right">
+            <ons-toolbar-button component="button/save-device">
+                <ons-if platform="android">
+                    <ons-icon icon="md-save"></ons-icon>
+                </ons-if>
+                <ons-if platform="ios other">Save</ons-if>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+
+    <ons-if platform="ios other">
+        <ons-list-title>Add a new Device</ons-list-title>
+    </ons-if>
+    <ons-list>
+        <ons-list-item modifier="nodivider">
+            <ons-if class="left left-label">Caption</ons-if>
+            <div class="center">
+                <ons-input id="caption-input" type="text" placeholder="Enter Caption" required></ons-input>
+            </div>
+        </ons-list-item>
+        <ons-list-item modifier="nodivider">
+            <ons-if class="left left-label">Device Type</ons-if>
+            <div class="center">
+                <ons-select id="deviceType-select">
+                    <option value="esp01s">ESP01S</option>
+                    <option value="esp8266-core">ESP8266 Core</option>
+                    <option value="wemos-d1-mini">Wemos D1 Mini</option>
+                </ons-select>
+            </div>
+        </ons-list-item>
+    </ons-list>
+</ons-page>
