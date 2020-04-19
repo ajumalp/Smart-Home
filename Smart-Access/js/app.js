@@ -1,5 +1,12 @@
-// App logic.
-window.myApp = {};
+
+/*
+ * Developed by ajumalp
+ * Contact me @ ajumalp@gmail.com
+ * https://owner.erratums.com
+ * Date created: 19-Apr-2020
+ */
+
+ window.myApp = {};
 
 document.addEventListener('init', function (event) {
   var page = event.target;
