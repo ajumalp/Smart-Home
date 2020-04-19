@@ -8,11 +8,19 @@
 
 myApp.services.devices = {
 
-  bindOnSaveListener: function (aControl) {
-    alert('Done');
-  },
+   bindOnSaveListener: function (aControl) {
+      alert('Done');
+   },
 
-  save: function (aData) {
-    ons.notification.alert(aData.caption);
-  }
+   save: function (aData) {
+      myApp.services.JQPHP.postData(
+         'devices/devices.php',
+         'saveDevice',
+         [aData.caption, aData.devicetype],
+         function (obj, isSuccess, textstatus) {
+            if (isSuccess) {
+               ons.notification.alert(obj);
+            }
+         });
+   }
 };

@@ -16,4 +16,7 @@
   define('cDB_DATABASE', 'erratums_shome');
   define('cDB_PORT', '3307');
 
+  // General
+  define('cGEN_SUCCESS', 'success');
+  define('cGEN_FAILED', 'failed');
 ?>

@@ -8,7 +8,6 @@
  */
 
 include_once __DIR__ . "/../config.php";
-include_once __DIR__ . "/../auth/AuthManager.php";
 
   class SQLConnection extends mysqli {
 
@@ -60,6 +59,10 @@ include_once __DIR__ . "/../auth/AuthManager.php";
       } else {
           return $varConn;
       }
+    }
+
+    public static function ResetAutoIncrement($aTableName) {
+      SQLConnection::ExecuteQueryEx("ALTER TABLE '%s' AUTO_INCREMENT = 1", $aTableName);
     }
 
     public static function ExecuteQueryEx($aQuery, ... $aParams) {
