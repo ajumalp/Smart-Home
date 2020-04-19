@@ -1,7 +1,8 @@
 <?php
 
   // DB
-  define('cDB_DRIVER', 'mysqli');
+  define('cAUTH_TABLE', 'users');
+
   define('cDB_HOSTNAME', 'localhost');
   define('cDB_USERNAME', 'es_shome');
   define('cDB_PASSWORD', 'C@RoAJ26MV6asQ6W7');
