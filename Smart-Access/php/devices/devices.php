@@ -8,11 +8,9 @@
  */
 
    include_once __DIR__ . "/../auth/AuthManager.php";
+   include_once __DIR__ . "/../Utils.php";
 
-   if (!isset($_POST['fnName']) || !isset($_POST['args'])) {
-      exit;
-   }
-
+   Utils::ValidatePostData();
    $sFunctionName = $_POST['fnName'];
    $varArgs = $_POST['args'];
 
@@ -21,7 +19,7 @@
    class Devices {
 
       static function saveDevice($aArgs) {
-         if (SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME) VALUES('%s')", $aArgs[0])) {
+         if (SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID) VALUES('%s', %d)", $aArgs[0], $aArgs[1])) {
             echo cGEN_SUCCESS;
          } else {
             echo cGEN_FAILED;

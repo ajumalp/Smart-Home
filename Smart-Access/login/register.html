@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="style.css">
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <link rel="icon" href="../favicon.ico?" type="image/x-icon">
-   <title>Sign in</title>
+   <title>Sign Up</title>
 </head>
 
 <body>
@@ -17,19 +17,15 @@
          </div>
 
          <div class="container">
-            <!-- <label for="uname"><b>Username</b></label> -->
             <input type="text" placeholder="Username" id="uname" required>
             <input type="password" placeholder="Password" id="psw" required>
+            <input type="password" placeholder="Confirm Password" id="pswcnf" required>
 
-            <button type="submit" onclick="doLogin()">Login</button>
-            <label>
-               <input type="checkbox" checked="checked" id="remember"> Remember me
-            </label>
+            <button onclick="doRegister()">Sign Up</button>
          </div>
 
          <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="go2Register()" class="registerbtn">Register</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <button type="button" onclick="window.history.back()" class="registerbtn">Back</button>
          </div>
       </div>
    </div>

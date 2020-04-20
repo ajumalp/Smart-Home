@@ -12,6 +12,7 @@ include_once __DIR__ . "/../config.php";
   class SQLConnection extends mysqli {
 
     public function executeQuery($aQuery, ... $aParams) {
+      // AuthManager::ValidateLogin();
       $varResult = false;
       $varQuery = sprintf($aQuery, ... $aParams);
       $varResult = $this->query($varQuery);
@@ -19,6 +20,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     public function fetchQuery($aQuery, ... $aArgs) {
+      // AuthManager::ValidateLogin();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
       $aOnExecute = $aArgs[$iArgCount - 1];
@@ -29,6 +31,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     public function fetchRows($aQuery, ... $aArgs) {
+      // AuthManager::ValidateLogin();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
       $aOnExecute = $aArgs[$iArgCount - 1];
@@ -52,6 +55,7 @@ include_once __DIR__ . "/../config.php";
         throw new Exception("Cannot connect to database: " . $varConnError);
       } else if ($aSQLConnEvent) {
         try {
+          // AuthManager::ValidateLogin();
           $aSQLConnEvent($varConn);
         } finally {
           mysqli_close($varConn);

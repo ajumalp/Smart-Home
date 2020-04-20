@@ -9,7 +9,7 @@ myApp.services = {
          $.ajax({
             type: "POST",
             url: "php/" + aFileName,
-            data: { fnName: aFunctionName, args: aArgs },
+            data: { sessionID: myApp.services.sessionID(), fnName: aFunctionName, args: aArgs },
 
             success: function (obj, textstatus) {
                var isSuccess = textstatus == 'success';
@@ -21,6 +21,17 @@ myApp.services = {
             }
          });
       }
+   },
+
+   login: function () {
+      var sSessionID = myApp.services.sessionID();
+      if (sSessionID === null) {
+         window.location.href = "login/";
+      }
+   },
+
+   sessionID: function () {
+      return sessionStorage.getItem('es_sa_sessionID');
    },
 
    //////////////////
