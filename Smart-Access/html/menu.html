@@ -1,4 +1,3 @@
-
 <!---------------------------------
  * Developed by ajumalp
  * Contact me @ ajumalp@gmail.com
@@ -6,7 +5,7 @@
  * Date created: 19-Apr-2020
  --------------------------------->
 
- <ons-page id="menuPage">
+<ons-page id="menuPage">
   <ons-list-title>Places</ons-list-title>
   <ons-list id="place-main">
     <ons-list-item tappable modifier="nodivider" category-id="home">
@@ -50,37 +49,65 @@
 
   <ons-list-title>Communication</ons-list-title>
   <ons-list id="links">
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://wa.me/?text=https://erratums.com/sa')">
-      <div class="left"><ons-icon icon="fa-share-alt" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://wa.me/?text=https://erratums.com/sa')">
+      <div class="left">
+        <ons-icon icon="fa-share-alt" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">Share</div>
     </ons-list-item>
 
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://play.google.com/store/apps/details?id=com.es.sa')">
-      <div class="left"><ons-icon icon="fa-star" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://play.google.com/store/apps/details?id=com.es.sa')">
+      <div class="left">
+        <ons-icon icon="fa-star" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">Rate App</div>
     </ons-list-item>
 
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://erratums.com')">
-      <div class="left"><ons-icon icon="fa-info-circle" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://erratums.com')">
+      <div class="left">
+        <ons-icon icon="fa-info-circle" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">About US</div>
     </ons-list-item>
 
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://tawk.to/chat/5b9216b8f31d0f771d848740/1cn6t65v2', '_self')">
-      <div class="left"><ons-icon icon="fa-comment" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://tawk.to/chat/5b9216b8f31d0f771d848740/1cn6t65v2', '_self')">
+      <div class="left">
+        <ons-icon icon="fa-comment" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">Quick Support</div>
     </ons-list-item>
   </ons-list>
 
   <ons-list-title>Privacy</ons-list-title>
   <ons-list id="links">
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://saapp.erratums.com/policy/privacy_policy.html')">
-      <div class="left"><ons-icon icon="fa-shield" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://saapp.erratums.com/policy/privacy_policy.html')">
+      <div class="left">
+        <ons-icon icon="fa-shield" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">Privacy Policy</div>
     </ons-list-item>
 
-    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron" onclick="window.open('https://saapp.erratums.com/policy/terms_and_conditions.html')">
-      <div class="left"><ons-icon icon="fa-list" style="color: grey;"></ons-icon></div>
+    <ons-list-item tappable style="cursor: pointer" modifier="nodivider chevron"
+      onclick="window.open('https://saapp.erratums.com/policy/terms_and_conditions.html')">
+      <div class="left">
+        <ons-icon icon="fa-list" style="color: grey;"></ons-icon>
+      </div>
       <div class="center">Terms & Conditions</div>
+    </ons-list-item>
+  </ons-list>
+
+  <ons-list-title>Security</ons-list-title>
+  <ons-list id="access-main">
+    <ons-list-item tappable modifier="nodivider" category-id="signOut">
+      <div class="left">
+        <ons-icon icon="fa-sign-out" class="list-item__icon"></ons-icon>
+      </div>
+      <div class="center">Sign Out</div>
     </ons-list-item>
   </ons-list>
 </ons-page>

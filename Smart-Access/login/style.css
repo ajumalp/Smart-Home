@@ -56,7 +56,9 @@ input[type=text], input[type=password] {
  }
 
  .container {
-   padding: 16px;
+   padding: 15px;
+   border-bottom-left-radius: 25px;
+   border-bottom-right-radius: 25px;
  }
 
  span.psw {
@@ -86,22 +88,6 @@ input[type=text], input[type=password] {
    border: 1px solid #888;
    width: 80%; /* Could be more or less, depending on screen size */
    border-radius: 25px;
- }
-
- /* The Close Button (x) */
- .close {
-   position: absolute;
-   right: 25px;
-   top: 0;
-   color: #000;
-   font-size: 35px;
-   font-weight: bold;
- }
-
- .close:hover,
- .close:focus {
-   color: red;
-   cursor: pointer;
  }
 
  /* Add Zoom Animation */

@@ -48,6 +48,8 @@ myApp.controllers = {
     myApp.services.categories.bindOnClickListener(page.querySelector('#manage-main ons-list-item[category-id="devices"]'));
     myApp.services.categories.bindOnClickListener(page.querySelector('#manage-main ons-list-item[category-id="settings"]'));
 
+    myApp.services.categories.bindOnClickListener(page.querySelector('#access-main ons-list-item[category-id="signOut"]'));
+
     // Change splitter animation depending on platform.
     document.querySelector('#mySplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
   },

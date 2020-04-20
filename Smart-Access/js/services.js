@@ -228,6 +228,12 @@ myApp.services = {
                document.querySelector('#main-toobal-title').innerHTML = "Smart Access [Office]";
             } else if (categoryId === 'other') {
                document.querySelector('#main-toobal-title').innerHTML = "Smart Access [Other]";
+            } else if (categoryId == 'signOut') {
+               myApp.services.JQPHP.postData('../php/auth/Login.php',
+               'logout', null, function(obj, textstatus) {
+                  sessionStorage.clear();
+                  window.location.reload();
+               });
             }
          };
 
