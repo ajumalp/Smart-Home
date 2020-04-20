@@ -1,3 +1,4 @@
+<?php
 
 /*
  * Developed by ajumalp
@@ -6,9 +7,7 @@
  * Date created: 19-Apr-2020
  */
 
-<?php
-
-   class Utils {
+class Utils {
 
       static function ValidatePostData() {
          if (!isset($_POST['sessionID']) || !isset($_POST['fnName']) || !isset($_POST['args'])) {
