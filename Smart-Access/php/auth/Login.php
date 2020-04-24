@@ -1,13 +1,17 @@
 <?php
 
 /*
- * Developed by ajumalp
+ * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
  * https://owner.erratums.com
  * Date created: 19-Apr-2020
  */
 
-   include_once "AuthManager.php";
+namespace ES\Core\Auth;
+
+use Exception;
+
+include_once "AuthManager.php";
 
    if ($_POST['fnName'] === 'login') {
       try {

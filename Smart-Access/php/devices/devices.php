@@ -1,16 +1,18 @@
 <?php
 
 /*
- * Developed by ajumalp
+ * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
  * https://owner.erratums.com
  * Date created: 19-Apr-2020
  */
 
-   include_once __DIR__ . "/../auth/AuthManager.php";
-   include_once __DIR__ . "/../Utils.php";
+namespace ES\SA\Devices;
 
-   Utils::ValidatePostData();
+use ES\Core\DBExpress\SQLConnection;
+use Utils\Authentication;
+
+   Authentication::ValidatePostData();
    $sFunctionName = $_POST['fnName'];
    $varArgs = $_POST['args'];
 

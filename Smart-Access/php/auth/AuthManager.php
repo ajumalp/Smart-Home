@@ -1,13 +1,18 @@
 <?php
 
 /*
- * Developed by ajumalp
+ * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
  * https://owner.erratums.com
  * Date created: 19-Apr-2020
  */
 
-  include_once __DIR__ . "/../dbExpress/SQLConnection.php";
+namespace ES\Core\Auth;
+
+use ES\Core\DBExpress\SQLConnection;
+use Exception;
+
+include_once __DIR__ . "/../dbExpress/SQLConnection.php";
   include_once __DIR__ . "/../config.php";
 
   include_once "AuthManagerExceptions.php";
@@ -144,12 +149,32 @@
       session_destroy();
     }
 
-    static function ValidateLogin($aSessionID = null) {
+    static function Validate($aSessionID = null) {
       if (!AuthManager::IsLoggedin($aSessionID)) {
         throw new UnunauthorizedAccessException();
       }
 
       return true;
+    }
+
+    static function LowSecurityValidation() {
+      $iSecurityLevel = AuthManager::getSecurityLevel();
+
+      // If security level is none, return true always { Ajmal }
+      if ($iSecurityLevel === AuthManager::eSecurityLevelNone) {
+        return true;
+      }
+
+      // If security level is low or greater, we need to
+      // start session and check loggin status { Ajmal }
+      if ($iSecurityLevel >= AuthManager::eSecurityLevelLow) {
+        session_start();
+        if ($_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
+          return true;
+        }
+      }
+
+      throw new UnunauthorizedAccessException();
     }
 
     static function CreateTable($aSQLConn = null) {

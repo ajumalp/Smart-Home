@@ -1,18 +1,25 @@
 <?php
 
 /*
- * Developed by ajumalp
+ * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
  * https://owner.erratums.com
  * Date created: 19-Apr-2020
  */
+
+namespace ES\Core\DBExpress;
+
+use ES\Core\Auth\AuthManager;
+use Exception;
+use InvalidArgumentException;
+use mysqli;
 
 include_once __DIR__ . "/../config.php";
 
   class SQLConnection extends mysqli {
 
     public function executeQuery($aQuery, ... $aParams) {
-      // AuthManager::ValidateLogin();
+      AuthManager::LowSecurityValidation();
       $varResult = false;
       $varQuery = sprintf($aQuery, ... $aParams);
       $varResult = $this->query($varQuery);
@@ -20,7 +27,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     public function fetchQuery($aQuery, ... $aArgs) {
-      // AuthManager::ValidateLogin();
+      AuthManager::LowSecurityValidation();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
       $aOnExecute = $aArgs[$iArgCount - 1];
@@ -31,7 +38,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     public function fetchRows($aQuery, ... $aArgs) {
-      // AuthManager::ValidateLogin();
+      AuthManager::LowSecurityValidation();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
       $aOnExecute = $aArgs[$iArgCount - 1];
@@ -65,10 +72,6 @@ include_once __DIR__ . "/../config.php";
       }
     }
 
-    public static function ResetAutoIncrement($aTableName) {
-      SQLConnection::ExecuteQueryEx("ALTER TABLE '%s' AUTO_INCREMENT = 1", $aTableName);
-    }
-
     public static function ExecuteQueryEx($aQuery, ... $aParams) {
       $varResult = false;
       $varSQLConn = SQLConnection::New();
@@ -100,5 +103,3 @@ include_once __DIR__ . "/../config.php";
     }
 
   }
-
-?>
