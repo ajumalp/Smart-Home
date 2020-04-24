@@ -7,7 +7,7 @@
  * Date created: 19-Apr-2020
  */
 
-namespace ES\Core\Auth;
+namespace ES\Core;
 
 use Exception;
 

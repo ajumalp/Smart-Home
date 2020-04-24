@@ -13,10 +13,10 @@ function doLogin() {
       data: { fnName: 'login', userName: document.getElementById("uname").value, password: document.getElementById("psw").value },
 
       success: function (aSessionID, textstatus) {
-         document.getElementById("uname").value = '';
-         document.getElementById("psw").value = '';
          if (textstatus == 'success') {
             if (aSessionID.Trim === "" || aSessionID == "false") {
+               document.getElementById("uname").value = '';
+               document.getElementById("psw").value = '';
                alert('Invalid Login');
             } else {
                sessionStorage.setItem('es_sa_sessionID', aSessionID);

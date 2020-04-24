@@ -5,11 +5,16 @@
 myApp.services = {
 
    JQPHP: {
-      postData: function (aFileName, aFunctionName, aArgs, aOnSuccess = null, aOnError = null) {
+      postData: function (aClassName, aFunctionName, aArgs, aOnSuccess = null, aOnError = null) {
          $.ajax({
             type: "POST",
-            url: "php/" + aFileName,
-            data: { sessionID: myApp.services.sessionID(), fnName: aFunctionName, args: aArgs },
+            url: "php/masterAPI.php",
+            data: {
+               sessionID: myApp.services.sessionID(),
+               className: aClassName,
+               functionName: aFunctionName,
+               parameters: aArgs
+            },
 
             success: function (obj, textstatus) {
                var isSuccess = textstatus == 'success';
@@ -32,6 +37,26 @@ myApp.services = {
 
    sessionID: function () {
       return sessionStorage.getItem('es_sa_sessionID');
+   },
+
+   platform: {
+
+      changeTo: function (aTempPlatform, aEvent) {
+         var varOldPlatform = ons.platform._renderPlatform;
+         try {
+            ons.platform.select(aTempPlatform);
+            aEvent();
+         } finally {
+            ons.platform._renderPlatform = varOldPlatform;
+         }
+      },
+
+      alert: function (aMsg) {
+         this.changeTo('ios', function () {
+            ons.notification.alert(aMsg);
+         });
+      }
+
    },
 
    //////////////////
@@ -229,11 +254,13 @@ myApp.services = {
             } else if (categoryId === 'other') {
                document.querySelector('#main-toobal-title').innerHTML = "Smart Access [Other]";
             } else if (categoryId == 'signOut') {
-               myApp.services.JQPHP.postData('../php/auth/Login.php',
-               'logout', null, function(obj, textstatus) {
-                  sessionStorage.clear();
-                  window.location.reload();
-               });
+               myApp.services.JQPHP.postData(
+                  'AuthManager',
+                  'logout', null, function (obj, textstatus) {
+                     sessionStorage.clear();
+                     window.location.reload();
+                  }
+               );
             }
          };
 
@@ -275,65 +302,4 @@ myApp.services = {
       }
    },
 
-   ////////////////////////
-   // Initial Data Service //
-   ////////////////////////
-   fixtures: [
-      {
-         title: 'Download OnsenUI',
-         category: 'Programming',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Install Monaca CLI',
-         category: 'Programming',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Star Onsen UI repo on Github',
-         category: 'Super important',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Register in the community forum',
-         category: 'Super important',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Send donations to Fran and Andreas',
-         category: 'Super important',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Profit',
-         category: '',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Visit Japan',
-         category: 'Travels',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      },
-      {
-         title: 'Enjoy an Onsen with Onsen UI team',
-         category: 'Personal',
-         description: 'Some description.',
-         highlight: false,
-         urgent: false
-      }
-   ]
 };

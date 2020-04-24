@@ -7,9 +7,8 @@
  * Date created: 19-Apr-2020
  */
 
-namespace ES\Core\DBExpress;
+namespace ES\Core;
 
-use ES\Core\Auth\AuthManager;
 use Exception;
 use InvalidArgumentException;
 use mysqli;
@@ -18,7 +17,7 @@ include_once __DIR__ . "/../config.php";
 
   class SQLConnection extends mysqli {
 
-    public function executeQuery($aQuery, ... $aParams) {
+    public function executeQuery($aQuery, ... $aParams): bool {
       AuthManager::LowSecurityValidation();
       $varResult = false;
       $varQuery = sprintf($aQuery, ... $aParams);
@@ -50,11 +49,22 @@ include_once __DIR__ . "/../config.php";
       }
     }
 
+    public function AsJSON($aQuery, ... $aArgs) {
+      AuthManager::LowSecurityValidation();
+      $varQuery = sprintf($aQuery, ... $aArgs);
+      $varResult = $this->query($varQuery);
+      $varRows = array();
+      while ($varRow = $varResult->fetch_assoc()) {
+        $varRows[] = $varRow;
+      }
+      return json_encode($varRows);
+    }
+
     /****************************************************************************************************************
      ---------------------------------------------- Static Functions ------------------------------------------------
      ****************************************************************************************************************/
 
-    public static function New($aSQLConnEvent = null) {
+    public static function New($aSQLConnEvent = null): SQLConnection {
       $varConn = new SQLConnection(cDB_HOSTNAME . ':' . cDB_PORT, cDB_USERNAME, cDB_PASSWORD, cDB_DATABASE);
       $varConnError = mysqli_connect_error();
       if ($varConnError) {
@@ -72,7 +82,7 @@ include_once __DIR__ . "/../config.php";
       }
     }
 
-    public static function ExecuteQueryEx($aQuery, ... $aParams) {
+    public static function ExecuteQueryEx($aQuery, ... $aParams): bool {
       $varResult = false;
       $varSQLConn = SQLConnection::New();
       try {
@@ -97,6 +107,15 @@ include_once __DIR__ . "/../config.php";
       $varSQLConn = SQLConnection::New();
       try {
         $varSQLConn->fetchRows($aQuery, ... $aArgs);
+      } finally {
+        mysqli_close($varSQLConn);
+      }
+    }
+
+    public static function AsJSONEx($aQuery, ... $aArgs) {
+      $varSQLConn = SQLConnection::New();
+      try {
+        return $varSQLConn->AsJSON($aQuery, ... $aArgs);
       } finally {
         mysqli_close($varSQLConn);
       }

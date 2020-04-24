@@ -7,25 +7,23 @@
  * Date created: 19-Apr-2020
  */
 
-namespace ES\SA\Devices;
+namespace ES\SA;
 
-use ES\Core\DBExpress\SQLConnection;
-use Utils\Authentication;
+use ES\Core\AuthManager;
+use ES\Core\SQLConnection;
 
-   Authentication::ValidatePostData();
-   $sFunctionName = $_POST['fnName'];
-   $varArgs = $_POST['args'];
+class Devices {
 
-   Devices::{$sFunctionName}($varArgs);
-
-   class Devices {
-
-      static function saveDevice($aArgs) {
-         if (SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID) VALUES('%s', %d)", $aArgs[0], $aArgs[1])) {
+      static function SaveItemToDB($aParams) {
+         if (SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID, USERID) VALUES('%s', %d, %d)", $aParams[0], $aParams[1], AuthManager::getUserID())) {
             echo cGEN_SUCCESS;
          } else {
             echo cGEN_FAILED;
          }
+      }
+
+      static function LoadFromDB($aParams) {
+         echo SQLConnection::AsJSONEx("SELECT * FROM devices WHERE USERID = %d AND LAYOUTINDEX = %d", AuthManager::getUserID(), $aParams[0]);
       }
 
    }

@@ -15,18 +15,20 @@ myApp.controllers = {
 
     Array.prototype.forEach.call(page.querySelectorAll('[component="button/add-control"]'), function (element) {
       element.onclick = function () {
-        ons.openActionSheet({
-          title: 'Select Control',
-          cancelable: true,
-          buttons: ['Switch', 'Push Button', 'Cancel']
-        }).then(function (index) {
-          switch (index) {
-            case 0:
-              document.querySelector('#myNavigator').pushPage('html/addControl.html');
-              break;
-            case 1:
-              break;
-          }
+        myApp.services.platform.changeTo('ios', function () {
+          ons.openActionSheet({
+            title: 'Select Control',
+            cancelable: true,
+            buttons: ['Switch', 'Push Button', 'Cancel']
+          }).then(function (index) {
+            switch (index) {
+              case 0:
+                document.querySelector('#myNavigator').pushPage('html/addControl.html');
+                break;
+              case 1:
+                break;
+            }
+          });
         });
       };
 
@@ -88,56 +90,4 @@ myApp.controllers = {
     });
   },
 
-  ////////////////////////////////
-  // Details Task Page Controller //
-  ///////////////////////////////
-  detailsTaskPage: function (page) {
-    // Get the element passed as argument to pushPage.
-    var element = page.data.element;
-
-    // Fill the view with the stored data.
-    page.querySelector('#title-input').value = element.data.title;
-    page.querySelector('#category-input').value = element.data.category;
-    page.querySelector('#description-input').value = element.data.description;
-    page.querySelector('#highlight-input').checked = element.data.highlight;
-    page.querySelector('#urgent-input').checked = element.data.urgent;
-
-    // Set button functionality to save an existing task.
-    page.querySelector('[component="button/save-task"]').onclick = function () {
-      var newTitle = page.querySelector('#title-input').value;
-
-      if (newTitle) {
-        // If input title is not empty, ask for confirmation before saving.
-        ons.notification.confirm(
-          {
-            title: 'Save changes?',
-            message: 'Previous data will be overwritten.',
-            buttonLabels: ['Discard', 'Save']
-          }
-        ).then(function (buttonIndex) {
-          if (buttonIndex === 1) {
-            // If 'Save' button was pressed, overwrite the task.
-            myApp.services.tasks.update(element,
-              {
-                title: newTitle,
-                category: page.querySelector('#category-input').value,
-                description: page.querySelector('#description-input').value,
-                ugent: element.data.urgent,
-                highlight: page.querySelector('#highlight-input').checked
-              }
-            );
-
-            // Set selected category to 'All', refresh and pop page.
-            document.querySelector('#default-category-list ons-list-item ons-radio').checked = true;
-            document.querySelector('#default-category-list ons-list-item').updateCategoryView();
-            document.querySelector('#myNavigator').popPage();
-          }
-        });
-
-      } else {
-        // Show alert if the input title is empty.
-        ons.notification.alert('You must provide a task title.');
-      }
-    };
-  }
 };

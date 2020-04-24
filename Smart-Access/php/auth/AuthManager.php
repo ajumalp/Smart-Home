@@ -7,12 +7,12 @@
  * Date created: 19-Apr-2020
  */
 
-namespace ES\Core\Auth;
+namespace ES\Core;
 
-use ES\Core\DBExpress\SQLConnection;
+use ES\Core\SQLConnection;
 use Exception;
 
-include_once __DIR__ . "/../dbExpress/SQLConnection.php";
+  include_once __DIR__ . "/../dbExpress/SQLConnection.php";
   include_once __DIR__ . "/../config.php";
 
   include_once "AuthManagerExceptions.php";
@@ -35,7 +35,7 @@ include_once __DIR__ . "/../dbExpress/SQLConnection.php";
                               PASSWORD VARCHAR(500) NOT NULL,
                               CREATED_AT DATETIME DEFAULT CURRENT_TIMESTAMP)";
 
-    static function AddUser($aUserName, $aPassword) {
+    static function AddUser($aUserName, $aPassword): bool {
       if (empty($aUserName)) throw new InvalidUserException("No UserName");
       elseif (strlen(trim($aUserName)) < 5) throw new InvalidUserException("UserName must have atleast 5 characters");
       elseif (empty($aPassword)) throw new InvalidPasswordException("No Password");
@@ -113,7 +113,7 @@ include_once __DIR__ . "/../dbExpress/SQLConnection.php";
       return $bResult;
     }
 
-    static function IsLoggedin($aSessionID = null) {
+    static function IsLoggedin($aSessionID = null): bool {
       $iSecurityLevel = AuthManager::getSecurityLevel();
 
       // If security level is none, return true always { Ajmal }
@@ -149,7 +149,7 @@ include_once __DIR__ . "/../dbExpress/SQLConnection.php";
       session_destroy();
     }
 
-    static function Validate($aSessionID = null) {
+    static function Validate($aSessionID = null): bool {
       if (!AuthManager::IsLoggedin($aSessionID)) {
         throw new UnunauthorizedAccessException();
       }
@@ -157,7 +157,13 @@ include_once __DIR__ . "/../dbExpress/SQLConnection.php";
       return true;
     }
 
-    static function LowSecurityValidation() {
+    static function getUserID() {
+      if(AuthManager::LowSecurityValidation()) {
+        return trim($_SESSION[AuthManager::cSESSION_LOGGEDINUSERID]);
+      }
+    }
+
+    static function LowSecurityValidation(): bool {
       $iSecurityLevel = AuthManager::getSecurityLevel();
 
       // If security level is none, return true always { Ajmal }
@@ -177,7 +183,7 @@ include_once __DIR__ . "/../dbExpress/SQLConnection.php";
       throw new UnunauthorizedAccessException();
     }
 
-    static function CreateTable($aSQLConn = null) {
+    static function CreateTable($aSQLConn = null): bool {
       if ($aSQLConn === null) {
         return SQLConnection::ExecuteQueryEx(AuthManager::cSQL_CREATE_TABLE);
       } else {
