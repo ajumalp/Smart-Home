@@ -10,6 +10,14 @@ class Devices {
 
    layoutIndex = -1;
 
+   static GetBoardNameByID(aID) {
+      switch (aID) {
+         case 1001: return "ESP01S";
+         case 1002: return "ESP8266 Core";
+         case 1003: return "Wemos D1 Mini";
+      }
+   }
+
    save(aData) {
       var varThis = this;
       myApp.services.JQPHP.postData(
@@ -35,6 +43,22 @@ class Devices {
             if (isSuccess) {
                varThis.loadData(varThis.getSelectedLayoutIndex());
                myApp.services.message.alert('Device deleted successfully');
+            }
+         }
+      );
+   }
+
+   editDevice(aDeviceID) {
+      myApp.services.message.alert('This feature is still not implimented');
+      return;
+
+      myApp.services.JQPHP.postData(
+         'Devices',
+         'UpdateItemInDB',
+         [0, aDeviceID],
+         function (obj, isSuccess, textstatus) {
+            if (isSuccess) {
+               myApp.services.message.alert('Device updated successfully');
             }
          }
       );
@@ -134,7 +158,9 @@ class Devices {
       var sLayoutID = this.layoutIDFromIndex(this.layoutIndex);
       var taskItem = ons.createElement(
          '<ons-list-item tappable deviceID="' + aItemData.DEVICEID + '" layoutIndex="' + this.layoutIndex + '" component="button/add-device">' +
-         '<div class="center">' + aItemData.DEVICENAME + '</div>' +
+         '<div class="left"><img class="list-item__thumbnail" src="images/board/' + aItemData.BOARDID + '.png"></div>' +
+         '<span class="list-item__title">' + aItemData.DEVICENAME + '</span>'+
+         '<span class="list-item__subtitle">Board: ' + Devices.GetBoardNameByID(parseInt(aItemData.BOARDID)) + '</span>' +
          '</ons-list-item>'
       );
 
@@ -147,7 +173,9 @@ class Devices {
             buttons: ['Edit', 'Move to', 'Delete', 'Cancel']
          }, function (aIndex) {
             switch (aIndex) {
-               case 0: break;
+               case 0:
+                  varThis.editDevice(aItemData.DEVICEID);
+                  break;
                case 1:
                   varThis.moveTo(aItemData.DEVICEID);
                   break;

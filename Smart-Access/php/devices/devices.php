@@ -25,6 +25,16 @@ class Devices {
          }
       }
 
+      static function UpdateItemInDB($aParams) {
+         if (SQLConnection::ExecuteQueryEx("UPDATE devices SET BOARDID = %d WHERE DEVICEID = %d AND USERID  %d",
+            $aParams[0], $aParams[1], AuthManager::getUserID())
+         ) {
+            echo cGEN_SUCCESS;
+         } else {
+            echo cGEN_FAILED;
+         }
+      }
+
       static function LoadFromDB($aParams) {
          echo SQLConnection::AsJSONEx("SELECT * FROM devices WHERE USERID = %d AND LAYOUTINDEX = %d", AuthManager::getUserID(), $aParams[0]);
       }
