@@ -13,7 +13,7 @@
    <link rel="stylesheet" href="style.css">
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <link rel="icon" href="../favicon.ico?" type="image/x-icon">
-   <title>Sign in</title>
+   <title>Smart Acces [Sign in]</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 
          <div class="container">
             <!-- <label for="uname"><b>Username</b></label> -->
-            <input type="text" placeholder="Username" id="uname" required>
+            <input type="text" placeholder="Username" id="uname" onkeyup="return forceLower(this);" required>
             <input type="password" placeholder="Password" id="psw" required>
 
             <button type="submit" onclick="doLogin()">Sign In</button>

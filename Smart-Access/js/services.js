@@ -39,6 +39,28 @@ myApp.services = {
       return sessionStorage.getItem('es_sa_sessionID');
    },
 
+   message: {
+
+      alert: function (aMsg) {
+         myApp.services.platform.changeTo('ios', function () {
+            ons.notification.alert(aMsg);
+         });
+      },
+
+      openActionSheet: function (aOptions, aOnSelectEvent) {
+         var varOldPlatform = ons.platform._renderPlatform;
+         try {
+            ons.platform.select('ios');
+            ons.openActionSheet(aOptions).then(function (aIndex) {
+               aOnSelectEvent(aIndex)
+            });
+         } finally {
+            ons.platform._renderPlatform = varOldPlatform;
+         }
+      }
+
+   },
+
    platform: {
 
       changeTo: function (aTempPlatform, aEvent) {
@@ -50,12 +72,6 @@ myApp.services = {
             ons.platform._renderPlatform = varOldPlatform;
          }
       },
-
-      alert: function (aMsg) {
-         this.changeTo('ios', function () {
-            ons.notification.alert(aMsg);
-         });
-      }
 
    },
 

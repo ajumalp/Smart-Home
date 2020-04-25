@@ -9,26 +9,32 @@
 myApp.controllers.devices = {
 
    deviceListPage: function (page) {
-      myApp.services.devices.loadData(0);
+      varDevices = new Devices();
+      varDevices.loadData(0); // Load home layout 1st { Ajmal }
 
-      document.addEventListener('prechange', function (event) {
-         myApp.services.devices.loadData(event.index);
+      [].forEach.call(page.querySelectorAll("[id^='tab-device-']"), function (element) {
+         element.onclick = function () {
+            varDevices.loadData(parseInt(element.attributes['index'].value));
+         }
       });
 
-      Array.prototype.forEach.call(page.querySelectorAll('[component="button/add-device"]'), function (element) {
+      [].forEach.call(page.querySelectorAll('[component="button/add-device"]'), function (element) {
          element.onclick = function () {
-            myApp.services.platform.changeTo('ios', function () {
-               ons.openActionSheet({
-                  title: 'Select Device Type',
-                  cancelable: true,
-                  buttons: ['Generic', 'Cancel']
-               }).then(function (index) {
-                  switch (index) {
-                     case 0:
-                        document.querySelector('#myNavigator').pushPage('html/addDevice.html');
-                        break;
-                  }
-               });
+            myApp.services.message.openActionSheet({
+               title: 'Select Device Type',
+               cancelable: true,
+               buttons: ['Generic', 'Cancel']
+            }, function (aIndex) {
+               switch (aIndex) {
+                  case 0:
+                     document.querySelector('#myNavigator').pushPage('html/addDevice.html', {
+                        animation: 'lift',
+                        data: {
+                           deviceData: varDevices
+                        }
+                     });
+                     break;
+               }
             });
          };
 
@@ -37,18 +43,18 @@ myApp.controllers.devices = {
    },
 
    addDevicePage: function (page) {
-      Array.prototype.forEach.call(page.querySelectorAll('[component="button/save-device"]'), function (element) {
+      [].forEach.call(page.querySelectorAll('[component="button/save-device"]'), function (element) {
          element.onclick = function () {
             var sCaption = page.querySelector('#caption-input').value;
             if (sCaption) {
-               myApp.services.devices.save({
+               page.data.deviceData.save({
                   caption: sCaption,
                   devicetype: page.querySelector('#deviceType-select').value
                });
 
                document.querySelector('#myNavigator').popPage();
             } else {
-               myApp.services.platform.alert('You must enter caption');
+               myApp.services.message.alert('You must enter caption');
             }
          };
 

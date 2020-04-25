@@ -10,7 +10,7 @@ function doLogin() {
    $.ajax({
       type: "POST",
       url: "../php/auth/Login.php",
-      data: { fnName: 'login', userName: document.getElementById("uname").value, password: document.getElementById("psw").value },
+      data: { fnName: 'login', userName: document.getElementById("uname").value.toLowerCase(), password: document.getElementById("psw").value },
 
       success: function (aSessionID, textstatus) {
          if (textstatus == 'success') {
@@ -25,6 +25,19 @@ function doLogin() {
          }
       },
    });
+}
+
+function getParameterByName(name, url = null) {
+   if (!url) url = window.location.href;
+   name = name.replace(/[\[\]]/g, '\\$&');
+   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex.exec(url);
+   if (!results) return null;
+   if (!results[2]) return '';
+   return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function forceLower(strInput) {
+   strInput.value = strInput.value.toLowerCase();
 }
 
 function go2Register() {
@@ -43,7 +56,7 @@ function doRegister() {
    $.ajax({
       type: "POST",
       url: "../php/auth/Login.php",
-      data: { fnName: 'register', userName: document.getElementById("uname").value, password: document.getElementById("psw").value },
+      data: { fnName: 'register', userName: document.getElementById("uname").value.toLowerCase(), password: document.getElementById("psw").value },
 
       success: function (aSessionID, textstatus) {
          document.getElementById("uname").value = '';
