@@ -27,7 +27,7 @@ include_once __DIR__ . "/../config.php";
       $this->lastError = "";
     }
 
-    public function executeQuery($aQuery, ... $aParams): bool {
+    public function executeQuery($aQuery, ... $aParams): int {
       $this->clearError();
       AuthManager::LowSecurityValidation();
       $varQuery = sprintf($aQuery, ... $aParams);
@@ -47,7 +47,6 @@ include_once __DIR__ . "/../config.php";
       $varResult = $this->query($varQuery);
       $aOnExecute($varResult);
       SQLConnection::$lastError = $this->error;
-      return $this->affected_rows;
     }
 
     public function fetchRows($aQuery, ... $aArgs) {
@@ -63,7 +62,6 @@ include_once __DIR__ . "/../config.php";
         $aOnExecute($varRow);
       }
       SQLConnection::$lastError = $this->error;
-      return $this->affected_rows;
     }
 
     public function AsJSON($aQuery, ... $aArgs) {
@@ -101,7 +99,7 @@ include_once __DIR__ . "/../config.php";
       }
     }
 
-    public static function ExecuteQueryEx($aQuery, ... $aParams): bool {
+    public static function ExecuteQueryEx($aQuery, ... $aParams): int {
       $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
@@ -114,27 +112,21 @@ include_once __DIR__ . "/../config.php";
     }
 
     public static function FetchQueryEx($aQuery, ... $aArgs) {
-      $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
-        $varResult = $varSQLConn->fetchQuery($aQuery, ... $aArgs);
+        $varSQLConn->fetchQuery($aQuery, ... $aArgs);
       } finally {
         mysqli_close($varSQLConn);
       }
-
-      return $varResult;
     }
 
     public static function FetchRowsEx($aQuery, ... $aArgs) {
-      $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
-        $varResult = $varSQLConn->fetchRows($aQuery, ... $aArgs);
+        $varSQLConn->fetchRows($aQuery, ... $aArgs);
       } finally {
         mysqli_close($varSQLConn);
       }
-
-      return $varResult;
     }
 
     public static function AsJSONEx($aQuery, ... $aArgs) {
