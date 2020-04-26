@@ -58,15 +58,15 @@ function doRegister() {
       url: "../php/auth/Login.php",
       data: { fnName: 'register', userName: document.getElementById("uname").value.toLowerCase(), password: document.getElementById("psw").value },
 
-      success: function (aSessionID, textstatus) {
+      success: function (aRespond, textstatus) {
          document.getElementById("uname").value = '';
          document.getElementById("psw").value = '';
          document.getElementById("pswcnf").value = '';
          if (textstatus == 'success') {
-            if (aSessionID.Trim === "" || aSessionID == "false") {
+            if (aRespond.Trim === "" || aRespond == "false") {
                alert('Invalid Login');
             } else {
-               sessionStorage.setItem('es_sa_sessionID', aSessionID);
+               // sessionStorage.setItem('es_sa_sessionID', aRespond);
                window.location.href = "../login/";
             }
          }

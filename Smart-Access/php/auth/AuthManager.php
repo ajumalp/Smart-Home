@@ -46,7 +46,9 @@ use Exception;
       $varPasswordHash = password_hash($aPassword, PASSWORD_DEFAULT);
       $varSQLConn = SQLConnection::New();
       try {
-        return $varSQLConn->executeQuery($cSQL_INSERT_USER, $aUserName, $varPasswordHash) === 1;
+        $varQuery = sprintf($cSQL_INSERT_USER, $aUserName, $varPasswordHash);
+        $varSQLConn->query($varQuery);
+        return $varSQLConn->affected_rows === 1;
       } finally {
         mysqli_close($varSQLConn);
       }

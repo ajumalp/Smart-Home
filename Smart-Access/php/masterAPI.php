@@ -10,7 +10,8 @@
 namespace ES\SA;
 
 include_once "auth/AuthManager.php";
-include_once "devices/devices.php";
+include_once "app/devices.php";
+include_once "app/gadgets.php";
 include_once "Utils.php";
 
 use ES\Core\AuthManager;

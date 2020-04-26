@@ -43,6 +43,10 @@ myApp.controllers.devices = {
    },
 
    addDevicePage: function (page) {
+      page.querySelector('#deviceType-select').onchange = function (event) {
+         $('#add-device-type-image').attr('src', 'images\\board\\' + page.querySelector('#deviceType-select').value + '.png');
+      };
+
       [].forEach.call(page.querySelectorAll('[component="button/save-device"]'), function (element) {
          element.onclick = function () {
             var sCaption = page.querySelector('#caption-input').value;

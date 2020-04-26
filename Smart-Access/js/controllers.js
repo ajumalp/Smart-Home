@@ -4,16 +4,13 @@
 
 myApp.controllers = {
 
-  //////////////////////////
-  // Tabbar Page Controller //
-  //////////////////////////
   tabbarPage: function (page) {
     // Set button functionality to open/close the menu.
     page.querySelector('[component="button/menu"]').onclick = function () {
       document.querySelector('#mySplitter').left.toggle();
     };
 
-    Array.prototype.forEach.call(page.querySelectorAll('[component="button/add-control"]'), function (element) {
+    [].forEach.call(page.querySelectorAll('[component="button/add-control"]'), function (element) {
       element.onclick = function () {
         myApp.services.platform.changeTo('ios', function () {
           ons.openActionSheet({
@@ -23,7 +20,9 @@ myApp.controllers = {
           }).then(function (index) {
             switch (index) {
               case 0:
-                document.querySelector('#myNavigator').pushPage('html/addControl.html');
+                document.querySelector('#myNavigator').pushPage('html/addSwitch.html', {
+                  animation: 'lift'
+                });
                 break;
               case 1:
                 break;
@@ -39,9 +38,6 @@ myApp.controllers = {
     // page.querySelector('#myTabbar').setAttribute('animation', ons.platform.isAndroid() ? 'slide' : 'none');
   },
 
-  ////////////////////////
-  // Menu Page Controller //
-  ////////////////////////
   menuPage: function (page) {
     myApp.services.categories.bindOnClickListener(page.querySelector('#place-main ons-list-item[category-id="home"]'));
     myApp.services.categories.bindOnClickListener(page.querySelector('#place-main ons-list-item[category-id="office"]'));
@@ -56,12 +52,9 @@ myApp.controllers = {
     document.querySelector('#mySplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
   },
 
-  ////////////////////////////
-  // New Task Page Controller //
-  ////////////////////////////
   settingsPage: function (page) {
     // Set button functionality to save a new task.
-    Array.prototype.forEach.call(page.querySelectorAll('[component="button/save-task"]'), function (element) {
+    [].forEach.call(page.querySelectorAll('[component="button/save-task"]'), function (element) {
       element.onclick = function () {
         var newTitle = page.querySelector('#title-input').value;
 

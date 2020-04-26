@@ -12,9 +12,10 @@ class Devices {
 
    static GetBoardNameByID(aID) {
       switch (aID) {
-         case 1001: return "ESP01S";
-         case 1002: return "ESP8266 Core";
-         case 1003: return "Wemos D1 Mini";
+         case 1001: return "1 CH Relay [esp01]";
+         case 1002: return "2 CH Relay [esp01]";
+         case 1003: return "4 CH Relay [esp01]";
+         case 1004: return "1 CH Relay [ESP8266]";
       }
    }
 

@@ -1,4 +1,3 @@
-
 <!---------------------------------
  * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
@@ -6,7 +5,7 @@
  * Date created: 19-Apr-2020
  --------------------------------->
 
- <ons-page id="addDevicePage" eClassName="DevicesController">
+<ons-page id="addDevicePage" eClassName="DevicesController">
     <ons-toolbar>
         <div class="left">
             <ons-back-button>Back</ons-back-button>
@@ -36,11 +35,13 @@
             <ons-if class="left left-label">Device Type</ons-if>
             <div class="center">
                 <ons-select id="deviceType-select">
-                    <option value=1001>ESP01S</option>
-                    <option value=1002>ESP8266 Core</option>
-                    <option value=1003>Wemos D1 Mini</option>
+                    <option value=1001>1 CH Relay [esp01]</option>
+                    <option value=1002>2 CH Relay [esp01]</option>
+                    <option value=1003>4 CH Relay [esp01]</option>
+                    <option value=1004>1 CH Relay [ESP8266]</option>
                 </ons-select>
             </div>
+            <div class="right"><img class="list-item__thumbnail" id="add-device-type-image" src="images\board\1001.png"></div>
         </ons-list-item>
     </ons-list>
 </ons-page>

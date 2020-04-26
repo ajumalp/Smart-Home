@@ -20,6 +20,8 @@
    <script src="js/controllers.js"></script>
    <script src="js/devices/devicesController.js"></script>
    <script src="js/devices/devicesService.js"></script>
+   <script src="js/gadgets/gadgetsController.js"></script>
+   <script src="js/gadgets/gadgetsService.js"></script>
 
    <link rel="icon" href="favicon.ico?" type="image/x-icon">
    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
@@ -54,7 +56,7 @@
                   <ons-icon icon="ion-navicon, material:md-menu" size="32px, material:24px"></ons-icon>
                </ons-toolbar-button>
             </div>
-            <div class="center" id="main-toobal-title">Smart Access [Home]</div>
+            <div class="center" id="main-toobal-title" layoutIndex="0">Smart Access [Home]</div>
             <div class="right">
                <!-- Toolbar-button  only visible for iOS/other. -->
                <!-- <ons-if platform="ios other">
@@ -62,7 +64,6 @@
           </ons-if> -->
             </div>
          </ons-toolbar>
-         <!-- <ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook> -->
 
          <!-- Floating Action Button only visible for Android. -->
          <ons-if platform="android ios other">
@@ -70,46 +71,10 @@
                <ons-icon icon="md-plus"></ons-icon>
             </ons-fab>
          </ons-if>
-
-         <!-- Auto-positioned Tabbar: top on Android, bottom on iOS/other. -->
-         <!-- <ons-tabbar id="myTabbar" position="auto">
-        <ons-tab page="html/pending_tasks.html" label="Pending" icon="ion-home, material:md-home" badge="7" active>
-        </ons-tab>
-        <ons-tab page="html/completed_tasks.html" label="Completed">
-        </ons-tab>
-      </ons-tabbar> -->
-
       </ons-page>
    </template>
 
-   <script>
-      myApp.services.login();
-      /*ons.ready(function () {
-         var pullHook = document.getElementById('pull-hook');
-
-         pullHook.addEventListener('changestate', function (event) {
-            var message = '';
-
-            switch (event.state) {
-            case 'initial':
-               message = 'Pull to refresh';
-               break;
-            case 'preaction':
-               message = 'Release';
-               break;
-            case 'action':
-               message = 'Loading...';
-               break;
-            }
-
-            pullHook.innerHTML = message;
-         });
-
-         pullHook.onAction = function (done) {
-            setTimeout(done, 1000);
-         };
-      });*/
-   </script>
+   <script>myApp.services.login();</script>
 </body>
 
 </html>
