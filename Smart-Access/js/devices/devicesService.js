@@ -25,9 +25,11 @@ class Devices {
          'SaveItemToDB',
          [aData.caption, aData.devicetype, this.getSelectedLayoutIndex()],
          function (obj, isSuccess, textstatus) {
-            if (isSuccess) {
+            if (obj === 'success') {
                varThis.loadData(varThis.getSelectedLayoutIndex());
-               myApp.services.message.alert('Saved');
+               myApp.services.message.alert('Saved successfully');
+            } else {
+               myApp.services.message.alert(obj);
             }
          }
       );
@@ -96,6 +98,7 @@ class Devices {
             case "Other":
                iNewLayoutIndex = 2;
                break;
+            default: return;
          }
 
          myApp.services.JQPHP.postData(
@@ -103,9 +106,11 @@ class Devices {
             'MoveTo',
             [iNewLayoutIndex, aDeviceID],
             function (obj, isSuccess, textstatus) {
-               if (isSuccess) {
+               if (obj === 'success') {
                   varThis.loadData(varThis.getSelectedLayoutIndex());
                   myApp.services.message.alert('Device moved successfully');
+               } else {
+                  myApp.services.message.alert(obj);
                }
             }
          );
@@ -159,7 +164,7 @@ class Devices {
       var taskItem = ons.createElement(
          '<ons-list-item tappable deviceID="' + aItemData.DEVICEID + '" layoutIndex="' + this.layoutIndex + '" component="button/add-device">' +
          '<div class="left"><img class="list-item__thumbnail" src="images/board/' + aItemData.BOARDID + '.png"></div>' +
-         '<span class="list-item__title">' + aItemData.DEVICENAME + '</span>'+
+         '<span class="list-item__title">' + aItemData.DEVICENAME + '</span>' +
          '<span class="list-item__subtitle">Board: ' + Devices.GetBoardNameByID(parseInt(aItemData.BOARDID)) + '</span>' +
          '</ons-list-item>'
       );

@@ -46,14 +46,15 @@ use Exception;
       $varPasswordHash = password_hash($aPassword, PASSWORD_DEFAULT);
       $varSQLConn = SQLConnection::New();
       try {
-        return $varSQLConn->executeQuery($cSQL_INSERT_USER, $aUserName, $varPasswordHash);
+        return $varSQLConn->executeQuery($cSQL_INSERT_USER, $aUserName, $varPasswordHash) === 1;
       } finally {
         mysqli_close($varSQLConn);
       }
     }
 
-    static function getSecurityLevel() {
-      return AuthManager::eSecurityLevelMedium;
+    static function getSecurityLevel($aPrintData = false) {
+      if ($aPrintData) echo cGEN_SECURITY_LEVEL;
+      return cGEN_SECURITY_LEVEL;
     }
 
     static function Login($aUserName, $aPassword, $aSQLConn = null) {
@@ -116,15 +117,30 @@ use Exception;
     static function IsLoggedin($aSessionID = null): bool {
       $iSecurityLevel = AuthManager::getSecurityLevel();
 
-      // If security level is none, return true always { Ajmal }
-      if ($iSecurityLevel === AuthManager::eSecurityLevelNone) {
-        return true;
-      }
+      session_start();
 
-      // If security level is low or greater, we need to
-      // start session and check loggin status { Ajmal }
+      // If security level is none, return true always [No login will happen]
+      // but set the 1st user as the logged in user { Ajmal }
+      if ($iSecurityLevel === AuthManager::eSecurityLevelNone) {
+        $bHasUser = false;
+        if (!$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
+          SQLConnection::FetchRowsEx("SELECT * FROM users ORDER BY USERID LIMIT 1", function ($aRow) use (&$bHasUser) {
+            $_SESSION[AuthManager::cSESSION_ISLOGGEDIN] = true;
+            $_SESSION[AuthManager::cSESSION_LOGGEDINUSERID] = $aRow['USERID'];
+            $_SESSION[AuthManager::cSESSION_LOGGEDINUSERNAME] = $aRow['USERNAME'];
+            $bHasUser = true;
+          });
+
+          if (!$bHasUser) {
+            throw new UnunauthorizedAccessException("No user account found");
+          }
+        }
+
+        return true;
+    }
+
+      // If security level is low or greater, we need to check loggin status { Ajmal }
       if ($iSecurityLevel >= AuthManager::eSecurityLevelLow) {
-        session_start();
         if (!$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
           return false;
         } else if ($iSecurityLevel === AuthManager::eSecurityLevelLow) {

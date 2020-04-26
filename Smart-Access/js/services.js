@@ -16,7 +16,7 @@ myApp.services = {
                parameters: aArgs
             },
 
-            success: function (obj, textstatus) {
+            success: function (obj, textstatus, jqXHR) {
                var isSuccess = textstatus == 'success';
                if (aOnSuccess !== null) aOnSuccess(obj, isSuccess, textstatus);
             },
@@ -29,9 +29,20 @@ myApp.services = {
    },
 
    login: function () {
-      var sSessionID = myApp.services.sessionID();
-      if (sSessionID === null) {
-         window.location.href = "login/";
+      try {
+         this.JQPHP.postData('ES\\Core\\AuthManager', 'getSecurityLevel', true, function (obj, isSuccess, textstatus) {
+            if (obj != 0) {
+               var sSessionID = myApp.services.sessionID();
+               if (sSessionID === null) {
+                  window.location.href = "login/";
+               }
+            }
+         });
+      } catch (err) {
+         var sSessionID = myApp.services.sessionID();
+         if (sSessionID === null) {
+            window.location.href = "login/";
+         }
       }
    },
 

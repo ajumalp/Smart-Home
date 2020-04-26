@@ -19,6 +19,7 @@ namespace ES\Core;
   define('cDB_PORT', '3307');
 
   // General
+  define('cGEN_SECURITY_LEVEL', 0);
   define('cGEN_SUCCESS', 'success');
   define('cGEN_FAILED', 'failed');
 ?>

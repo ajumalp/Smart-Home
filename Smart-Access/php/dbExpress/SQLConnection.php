@@ -17,15 +17,27 @@ include_once __DIR__ . "/../config.php";
 
   class SQLConnection extends mysqli {
 
+    static private $lastError = "";
+
+    static public function LastError(): string {
+      return SQLConnection::$lastError;
+    }
+
+    private function clearError() {
+      $this->lastError = "";
+    }
+
     public function executeQuery($aQuery, ... $aParams): bool {
+      $this->clearError();
       AuthManager::LowSecurityValidation();
-      $varResult = false;
       $varQuery = sprintf($aQuery, ... $aParams);
-      $varResult = $this->query($varQuery);
-      return $varResult;
+      $this->query($varQuery);
+      SQLConnection::$lastError = $this->error;
+      return $this->affected_rows;
     }
 
     public function fetchQuery($aQuery, ... $aArgs) {
+      $this->clearError();
       AuthManager::LowSecurityValidation();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
@@ -34,9 +46,12 @@ include_once __DIR__ . "/../config.php";
       $varQuery = sprintf($aQuery, ... $aArgs);
       $varResult = $this->query($varQuery);
       $aOnExecute($varResult);
+      SQLConnection::$lastError = $this->error;
+      return $this->affected_rows;
     }
 
     public function fetchRows($aQuery, ... $aArgs) {
+      $this->clearError();
       AuthManager::LowSecurityValidation();
       $iArgCount = count($aArgs);
       if ($iArgCount === 0) throw new InvalidArgumentException("No OnExecutionFuction");
@@ -47,9 +62,12 @@ include_once __DIR__ . "/../config.php";
       while ($varRow = $varResult->fetch_assoc()) {
         $aOnExecute($varRow);
       }
+      SQLConnection::$lastError = $this->error;
+      return $this->affected_rows;
     }
 
     public function AsJSON($aQuery, ... $aArgs) {
+      $this->clearError();
       AuthManager::LowSecurityValidation();
       $varQuery = sprintf($aQuery, ... $aArgs);
       $varResult = $this->query($varQuery);
@@ -57,6 +75,7 @@ include_once __DIR__ . "/../config.php";
       while ($varRow = $varResult->fetch_assoc()) {
         $varRows[] = $varRow;
       }
+      SQLConnection::$lastError = $this->error;
       return json_encode($varRows);
     }
 
@@ -83,7 +102,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     public static function ExecuteQueryEx($aQuery, ... $aParams): bool {
-      $varResult = false;
+      $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
         $varResult = $varSQLConn->executeQuery($aQuery, ... $aParams);
@@ -95,21 +114,27 @@ include_once __DIR__ . "/../config.php";
     }
 
     public static function FetchQueryEx($aQuery, ... $aArgs) {
+      $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
-        $varSQLConn->fetchQuery($aQuery, ... $aArgs);
+        $varResult = $varSQLConn->fetchQuery($aQuery, ... $aArgs);
       } finally {
         mysqli_close($varSQLConn);
       }
+
+      return $varResult;
     }
 
     public static function FetchRowsEx($aQuery, ... $aArgs) {
+      $varResult = 0;
       $varSQLConn = SQLConnection::New();
       try {
-        $varSQLConn->fetchRows($aQuery, ... $aArgs);
+        $varResult = $varSQLConn->fetchRows($aQuery, ... $aArgs);
       } finally {
         mysqli_close($varSQLConn);
       }
+
+      return $varResult;
     }
 
     public static function AsJSONEx($aQuery, ... $aArgs) {

@@ -15,23 +15,22 @@ use ES\Core\SQLConnection;
 class Devices {
 
       static function SaveItemToDB($aParams) {
-         if (SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID, USERID, LAYOUTINDEX) VALUES('%s', %d, %d, %d)",
-            $aParams[0], $aParams[1],
-            AuthManager::getUserID(), $aParams[2])
+         if (1 === SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID, USERID, LAYOUTINDEX) VALUES('%s', %d, %d, %d)",
+            $aParams[0], $aParams[1], AuthManager::getUserID(), $aParams[2])
          ) {
             echo cGEN_SUCCESS;
          } else {
-            echo cGEN_FAILED;
+            echo SQLConnection::LastError();
          }
       }
 
       static function UpdateItemInDB($aParams) {
-         if (SQLConnection::ExecuteQueryEx("UPDATE devices SET BOARDID = %d WHERE DEVICEID = %d AND USERID  %d",
+         if (1 === SQLConnection::ExecuteQueryEx("UPDATE devices SET BOARDID = %d WHERE DEVICEID = %d AND USERID  %d",
             $aParams[0], $aParams[1], AuthManager::getUserID())
          ) {
             echo cGEN_SUCCESS;
          } else {
-            echo cGEN_FAILED;
+            echo SQLConnection::LastError();
          }
       }
 
@@ -40,21 +39,21 @@ class Devices {
       }
 
       static function DeleteFromDB($aParams) {
-         if (SQLConnection::ExecuteQueryEx("DELETE FROM devices WHERE DEVICEID = %d AND USERID = %d", $aParams[0], AuthManager::getUserID())
+         if (1 === SQLConnection::ExecuteQueryEx("DELETE FROM devices WHERE DEVICEID = %d AND USERID = %d", $aParams[0], AuthManager::getUserID())
          ) {
             echo cGEN_SUCCESS;
          } else {
-            echo cGEN_FAILED;
+            echo SQLConnection::LastError();
          }
       }
 
       static function MoveTo($aParams) {
-         if (SQLConnection::ExecuteQueryEx("UPDATE devices SET LAYOUTINDEX = %d WHERE DEVICEID = %d AND USERID = %d",
+         if (1 === SQLConnection::ExecuteQueryEx("UPDATE devices SET LAYOUTINDEX = %d WHERE DEVICEID = %d AND USERID = %d",
             $aParams[0], $aParams[1], AuthManager::getUserID())
          ) {
             echo cGEN_SUCCESS;
          } else {
-            echo cGEN_FAILED;
+            echo SQLConnection::LastError();
          }
       }
 
