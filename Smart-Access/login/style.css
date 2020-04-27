@@ -124,3 +124,9 @@ button:focus {
       width: 100%;
    }
  }
+
+ @media screen and (min-width: 600px) {
+  .modal-content {
+    width: 450px;
+  }
+ }
