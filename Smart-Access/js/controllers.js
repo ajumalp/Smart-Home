@@ -7,7 +7,7 @@ myApp.controllers = {
   tabbarPage: function (page) {
     // Set button functionality to open/close the menu.
     page.querySelector('[component="button/menu"]').onclick = function () {
-      document.querySelector('#mySplitter').left.toggle();
+      document.querySelector('#mainSplitter').left.toggle();
     };
 
     [].forEach.call(page.querySelectorAll('[component="button/add-control"]'), function (element) {
@@ -20,7 +20,7 @@ myApp.controllers = {
           }).then(function (index) {
             switch (index) {
               case 0:
-                document.querySelector('#myNavigator').pushPage('html/addSwitch.html', {
+                myApp.services.Main.Navigator().pushPage('html/addSwitch.html', {
                   animation: 'lift'
                 });
                 break;
@@ -39,17 +39,10 @@ myApp.controllers = {
   },
 
   menuPage: function (page) {
-    myApp.services.categories.bindOnClickListener(page.querySelector('#place-main ons-list-item[category-id="home"]'));
-    myApp.services.categories.bindOnClickListener(page.querySelector('#place-main ons-list-item[category-id="office"]'));
-    myApp.services.categories.bindOnClickListener(page.querySelector('#place-main ons-list-item[category-id="other"]'));
-
-    myApp.services.categories.bindOnClickListener(page.querySelector('#manage-main ons-list-item[category-id="devices"]'));
-    myApp.services.categories.bindOnClickListener(page.querySelector('#manage-main ons-list-item[category-id="settings"]'));
-
-    myApp.services.categories.bindOnClickListener(page.querySelector('#access-main ons-list-item[category-id="signOut"]'));
+    [].forEach.call(page.querySelectorAll("[category-id^=main-menu-]"), myApp.services.categories.bindOnClickListener);
 
     // Change splitter animation depending on platform.
-    document.querySelector('#mySplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
+    document.querySelector('#mainSplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
   },
 
   settingsPage: function (page) {
@@ -60,20 +53,18 @@ myApp.controllers = {
 
         if (newTitle) {
           // If input title is not empty, create a new task.
-          myApp.services.tasks.create(
-            {
-              title: newTitle,
-              category: page.querySelector('#category-input').value,
-              description: page.querySelector('#description-input').value,
-              highlight: page.querySelector('#highlight-input').checked,
-              urgent: page.querySelector('#urgent-input').checked
-            }
-          );
+          myApp.services.tasks.create({
+            title: newTitle,
+            category: page.querySelector('#category-input').value,
+            description: page.querySelector('#description-input').value,
+            highlight: page.querySelector('#highlight-input').checked,
+            urgent: page.querySelector('#urgent-input').checked
+          });
 
           // Set selected category to 'All', refresh and pop page.
           document.querySelector('#default-category-list ons-list-item ons-radio').checked = true;
           document.querySelector('#default-category-list ons-list-item').updateCategoryView();
-          document.querySelector('#myNavigator').popPage();
+          myApp.services.Main.Navigator().popPage();
 
         } else {
           // Show alert if the input title is empty.

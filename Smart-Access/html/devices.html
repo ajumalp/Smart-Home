@@ -5,17 +5,14 @@
  * Date created: 19-Apr-2020
  --------------------------------->
 
-<ons-page id="deviceListPage" eClassName="DevicesController">
+<ons-page id="deviceListPage" eClassName="DeviceController">
    <ons-toolbar>
       <div class="left">
          <ons-back-button>Back</ons-back-button>
       </div>
       <div class="center">Devices</div>
       <div class="right">
-         <ons-toolbar-button component="button/add-device">
-            <!-- <ons-if platform="android">
-          <ons-icon icon="md-plus"></ons-icon>
-        </ons-if> -->
+         <ons-toolbar-button component="button/add-device" onclick="DeviceController.AddDevice()">
             <ons-if platform="ios other">Add</ons-if>
          </ons-toolbar-button>
       </div>
@@ -32,28 +29,25 @@
 
    <template id="tempDevices-home.html">
       <ons-page id="TabAll">
-         <ons-list id="device-list-home">
-         </ons-list>
+         <ons-list id="device-list-home"> </ons-list>
       </ons-page>
    </template>
 
    <template id="tempDevices-office.html">
       <ons-page id="TabAll">
-         <ons-list id="device-list-office">
-         </ons-list>
+         <ons-list id="device-list-office"> </ons-list>
       </ons-page>
    </template>
 
    <template id="tempDevices-other.html">
       <ons-page id="TabAll">
-         <ons-list id="device-list-other">
-         </ons-list>
+         <ons-list id="device-list-other"> </ons-list>
       </ons-page>
    </template>
 
    <!-- Floating Action Button only visible for Android. -->
    <ons-if platform="android">
-      <ons-fab position="right bottom" component="button/add-device">
+      <ons-fab position="right bottom" component="button/add-device" onclick="DeviceController.AddDevice()">
          <ons-icon icon="md-plus"></ons-icon>
       </ons-fab>
    </ons-if>

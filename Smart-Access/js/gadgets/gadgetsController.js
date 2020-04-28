@@ -22,7 +22,7 @@ myApp.controllers.gadgets = {
                   hidepair: page.querySelector('#hidePair-check').checked,
                   inverted: page.querySelector('#inverted-check').checked
                });
-               document.querySelector('#myNavigator').popPage();
+               myApp.services.Main.Navigator().popPage();
             } else {
                myApp.services.message.alert('You must enter caption');
             }

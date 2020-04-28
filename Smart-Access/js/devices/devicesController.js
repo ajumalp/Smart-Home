@@ -6,6 +6,29 @@
  * Date created: 19-Apr-2020
  */
 
+class DeviceController {
+
+   static AddDevice() {
+      myApp.services.message.openActionSheet({
+         title: 'Select Device Type',
+         cancelable: true,
+         buttons: ['Generic', 'Cancel']
+      }, function (aIndex) {
+         switch (aIndex) {
+            case 0:
+               myApp.services.Main.Navigator().pushPage('html/addDevice.html', {
+                  animation: 'lift',
+                  data: {
+                     deviceData: varDevices
+                  }
+               });
+               break;
+         }
+      });
+   }
+
+}
+
 myApp.controllers.devices = {
 
    deviceListPage: function (page) {
@@ -18,34 +41,14 @@ myApp.controllers.devices = {
          }
       });
 
-      [].forEach.call(page.querySelectorAll('[component="button/add-device"]'), function (element) {
-         element.onclick = function () {
-            myApp.services.message.openActionSheet({
-               title: 'Select Device Type',
-               cancelable: true,
-               buttons: ['Generic', 'Cancel']
-            }, function (aIndex) {
-               switch (aIndex) {
-                  case 0:
-                     document.querySelector('#myNavigator').pushPage('html/addDevice.html', {
-                        animation: 'lift',
-                        data: {
-                           deviceData: varDevices
-                        }
-                     });
-                     break;
-               }
-            });
-         };
-
-         element.show && element.show(); // Fix ons-fab in Safari.
-      });
    },
 
    addDevicePage: function (page) {
+
       page.querySelector('#deviceType-select').onchange = function (event) {
          $('#add-device-type-image').attr('src', 'images\\board\\' + page.querySelector('#deviceType-select').value + '.png');
       };
+
 
       [].forEach.call(page.querySelectorAll('[component="button/save-device"]'), function (element) {
          element.onclick = function () {
@@ -56,7 +59,7 @@ myApp.controllers.devices = {
                   devicetype: page.querySelector('#deviceType-select').value
                });
 
-               document.querySelector('#myNavigator').popPage();
+               myApp.services.Main.Navigator().popPage();
             } else {
                myApp.services.message.alert('You must enter caption');
             }
@@ -64,6 +67,7 @@ myApp.controllers.devices = {
 
          element.show && element.show();
       });
+
    }
 
 };

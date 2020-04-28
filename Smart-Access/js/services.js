@@ -28,6 +28,14 @@ myApp.services = {
       }
    },
 
+   Main: {
+
+      Navigator: function () {
+         return document.querySelector('#mainNavigator');
+      }
+
+   },
+
    login: function () {
       try {
          this.JQPHP.postData('ES\\Core\\AuthManager', 'getSecurityLevel', true, function (obj, isSuccess, textstatus) {
@@ -87,32 +95,47 @@ myApp.services = {
    },
 
    categories: {
+
+      ItemIndexByName: function (aName) {
+         switch (aName) {
+            case "home": return 0;
+            case "office": return 1;
+            case "other": return 2;
+         }
+      },
+
       bindOnClickListener: function (categoryItem) {
-         var categoryId = categoryItem.getAttribute('category-id');
+         var categoryId = categoryItem.getAttribute('category-id').replace('main-menu-', '');
 
          categoryItem.onClickListener = function () {
-            document.querySelector('#mySplitter').left.toggle();
-            if (categoryId === 'settings') {
-               document.querySelector('#myNavigator').pushPage('html/settings.html');
-            } else if (categoryId === 'devices') {
-               document.querySelector('#myNavigator').pushPage('html/devices.html');
-            } else if (categoryId === 'home') {
-               document.getElementById('main-toobal-title').innerHTML = "Smart Access [Home]";
-               document.getElementById('main-toobal-title').attributes['layoutIndex'].value = "0";
-            } else if (categoryId === 'office') {
-               document.getElementById('main-toobal-title').innerHTML = "Smart Access [Office]";
-               document.getElementById('main-toobal-title').attributes['layoutIndex'].value = "1";
-            } else if (categoryId === 'other') {
-               document.getElementById('main-toobal-title').innerHTML = "Smart Access [Other]";
-               document.getElementById('main-toobal-title').attributes['layoutIndex'].value = "2";
-            } else if (categoryId == 'signOut') {
-               myApp.services.JQPHP.postData(
-                  'AuthManager',
-                  'logout', null, function (obj, textstatus) {
-                     sessionStorage.clear();
-                     window.location.reload();
-                  }
-               );
+            document.querySelector('#mainSplitter').left.toggle();
+
+            switch (categoryId) {
+
+               case "settings":
+                  myApp.services.Main.Navigator().pushPage('html/settings.html');
+                  break;
+
+               case "devices":
+                  myApp.services.Main.Navigator().pushPage('html/devices.html');
+                  break;
+
+               case "home": case "office": case "other":
+                  var sCategoryText = categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
+                  document.getElementById('main-toobal-title').innerHTML = "Smart Access [" + sCategoryText + "]";
+                  var sLayoutIndex = myApp.services.categories.ItemIndexByName(categoryId).toString();
+                  document.getElementById('main-toobal-title').attributes['layoutIndex'].value = sLayoutIndex;
+                  break;
+
+               case "signOut":
+                  myApp.services.JQPHP.postData(
+                     'AuthManager',
+                     'logout', null, function (obj, textstatus) {
+                        sessionStorage.clear();
+                        window.location.reload();
+                     }
+                  );
+                  break;
             }
          };
 

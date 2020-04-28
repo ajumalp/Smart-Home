@@ -18,7 +18,7 @@ document.addEventListener('init', function (event) {
 
       var varClass = null;
       switch (varClassType) {
-         case "DevicesController":
+         case "DeviceController":
             varClass = myApp.controllers.devices;
             break;
          case "GadgetsController":

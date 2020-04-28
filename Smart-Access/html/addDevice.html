@@ -5,14 +5,14 @@
  * Date created: 19-Apr-2020
  --------------------------------->
 
-<ons-page id="addDevicePage" eClassName="DevicesController">
+<ons-page id="addDevicePage" eClassName="DeviceController">
     <ons-toolbar>
         <div class="left">
             <ons-back-button>Back</ons-back-button>
         </div>
         <div class="center">Add Device</div>
         <div class="right">
-            <ons-toolbar-button component="button/save-device">
+            <ons-toolbar-button component="button/save-device" onclick="DeviceController.SaveDevice()">
                 <ons-if platform="android">
                     <ons-icon icon="md-save"></ons-icon>
                 </ons-if>
