@@ -35,24 +35,3 @@ document.addEventListener('init', function (event) {
       myApp.controllers[page.id](page);
    }
 });
-
-myApp.Utils = {
-
-   Main: {
-      LayoutIndex: function () {
-         return parseInt(document.getElementById('main-toobal-title').attributes['layoutIndex'].value);
-      }
-   },
-
-   General: {
-      BoolToChar: function (aBoolValue) {
-         if (aBoolValue) return 'T';
-         else return 'F';
-      },
-
-      CharToBool: function (aCharValue) {
-         return (aCharValue === 'T' || aCharValue === 't');
-      }
-   }
-
-}

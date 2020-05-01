@@ -1,4 +1,3 @@
-
 /*
  * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
@@ -18,11 +17,12 @@ myApp.controllers.gadgets = {
                Gadgets.SaveSwitch({
                   caption: sCaption,
                   deviceid: varDevice.options[varDevice.selectedIndex].getAttribute('deviceid'),
+                  boardtype: varDevice.options[varDevice.selectedIndex].getAttribute('boardtype'),
                   pintype: page.querySelector('#pintype-select').value,
                   hidepair: page.querySelector('#hidePair-check').checked,
                   inverted: page.querySelector('#inverted-check').checked
                });
-               myApp.services.Main.Navigator().popPage();
+               myApp.Main.Navigator().popPage();
             } else {
                myApp.services.message.alert('You must enter caption');
             }

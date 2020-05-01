@@ -18,6 +18,7 @@
    <script src="js/app.js"></script>
    <script src="js/services.js"></script>
    <script src="js/controllers.js"></script>
+   <script src="js/main.js"></script>
    <script src="js/devices/devicesController.js"></script>
    <script src="js/devices/devicesService.js"></script>
    <script src="js/gadgets/gadgetsController.js"></script>
@@ -57,20 +58,16 @@
                </ons-toolbar-button>
             </div>
             <div class="center" id="main-toobal-title" layoutIndex="0">Smart Access [Home]</div>
-            <div class="right">
-               <!-- Toolbar-button  only visible for iOS/other. -->
-               <!-- <ons-if platform="ios other">
-            <ons-toolbar-button component="button/new-task">New</ons-toolbar-button>
-          </ons-if> -->
-            </div>
+            <!-- <div class="right">
+               <ons-toolbar-button>+</ons-toolbar-button>
+            </div> -->
          </ons-toolbar>
 
-         <!-- Floating Action Button only visible for Android. -->
-         <ons-if platform="android ios other">
-            <ons-fab position="right bottom" component="button/add-control">
-               <ons-icon icon="md-plus"></ons-icon>
-            </ons-fab>
-         </ons-if>
+         <ons-fab position="right bottom" component="button/add-control">
+           <ons-icon icon="md-plus"></ons-icon>
+         </ons-fab>
+        
+         <ons-list id="main-gadget-list"> </ons-list>
       </ons-page>
    </template>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2020 at 11:26 PM
+-- Generation Time: May 01, 2020 at 03:30 PM
 -- Server version: 10.3.21-MariaDB
 -- PHP Version: 5.6.40
 
@@ -70,7 +70,8 @@ CREATE TABLE `gadgets` (
   `PINTYPE` varchar(10) NOT NULL,
   `LAYOUTINDEX` smallint(6) NOT NULL,
   `HIDEPAIR` char(1) NOT NULL DEFAULT 'F',
-  `INVERTED` char(1) NOT NULL DEFAULT 'F'
+  `INVERTED` char(1) NOT NULL DEFAULT 'F',
+  `VALUE` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

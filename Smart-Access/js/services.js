@@ -1,6 +1,10 @@
-/***********************************************************************************
- * App Services. This contains the logic of the application organised in modules/objects. *
- ***********************************************************************************/
+
+/*
+ * Developed by Ajmal Muhammad P
+ * Contact me @ ajumalp@gmail.com
+ * https://owner.erratums.com
+ * Date created: 19-Apr-2020
+ */
 
 myApp.services = {
 
@@ -113,18 +117,19 @@ myApp.services = {
             switch (categoryId) {
 
                case "settings":
-                  myApp.services.Main.Navigator().pushPage('html/settings.html');
+                  myApp.Main.Navigator().pushPage('html/settings.html');
                   break;
 
                case "devices":
-                  myApp.services.Main.Navigator().pushPage('html/devices.html');
+                  myApp.Main.Navigator().pushPage('html/devices.html');
                   break;
 
                case "home": case "office": case "other":
                   var sCategoryText = categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
                   document.getElementById('main-toobal-title').innerHTML = "Smart Access [" + sCategoryText + "]";
-                  var sLayoutIndex = myApp.services.categories.ItemIndexByName(categoryId).toString();
-                  document.getElementById('main-toobal-title').attributes['layoutIndex'].value = sLayoutIndex;
+                  var iLayoutIndex = myApp.services.categories.ItemIndexByName(categoryId);
+                  document.getElementById('main-toobal-title').attributes['layoutIndex'].value = iLayoutIndex.toString();
+                  Gadgets.LoadData(iLayoutIndex);
                   break;
 
                case "signOut":

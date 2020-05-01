@@ -24,7 +24,7 @@ include_once __DIR__ . "/../config.php";
     }
 
     private function clearError() {
-      $this->lastError = "";
+      SQLConnection::$lastError = "";
     }
 
     public function executeQuery($aQuery, ... $aParams): int {

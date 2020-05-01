@@ -1,4 +1,3 @@
-
 /*
  * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
@@ -55,7 +54,7 @@ class Devices {
       myApp.services.message.alert('This feature is still not implimented');
       return;
 
-      myApp.services.JQPHP.postData(
+      /*myApp.services.JQPHP.postData(
          'Devices',
          'UpdateItemInDB',
          [0, aDeviceID],
@@ -64,7 +63,7 @@ class Devices {
                myApp.services.message.alert('Device updated successfully');
             }
          }
-      );
+      );*/
    }
 
    moveTo(aDeviceID) {
@@ -163,7 +162,7 @@ class Devices {
       var varThis = this;
       var sLayoutID = this.layoutIDFromIndex(this.layoutIndex);
       var taskItem = ons.createElement(
-         '<ons-list-item tappable deviceID="' + aItemData.DEVICEID + '" layoutIndex="' + this.layoutIndex + '" component="button/add-device">' +
+         '<ons-list-item tappable deviceID="' + aItemData.DEVICEID + '" layoutIndex="' + this.layoutIndex + '">' +
          '<div class="left"><img class="list-item__thumbnail" src="images/board/' + aItemData.BOARDID + '.png"></div>' +
          '<span class="list-item__title">' + aItemData.DEVICENAME + '</span>' +
          '<span class="list-item__subtitle">Board: ' + Devices.GetBoardNameByID(parseInt(aItemData.BOARDID)) + '</span>' +
@@ -192,4 +191,4 @@ class Devices {
          });
       };
    }
-};
+}

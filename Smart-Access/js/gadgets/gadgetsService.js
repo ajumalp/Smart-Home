@@ -1,4 +1,3 @@
-
 /*
  * Developed by Ajmal Muhammad P
  * Contact me @ ajumalp@gmail.com
@@ -13,8 +12,8 @@ class Gadgets {
       myApp.services.JQPHP.postData(
          'Gadgets',
          'SaveItemToDB',
-         [aData.caption, aData.deviceid, Gadgets.PinTypeCode(aData.pintype),
-         myApp.Utils.Main.LayoutIndex(),
+         [aData.caption, aData.deviceid, Gadgets.PinTypeCode(aData.boardtype, aData.pintype),
+         myApp.Main.LayoutIndex(),
          myApp.Utils.General.BoolToChar(aData.hidepair),
          myApp.Utils.General.BoolToChar(aData.inverted)],
          function (obj, isSuccess, textstatus) {
@@ -43,11 +42,34 @@ class Gadgets {
       }
    }
 
+   static LoadData(aLayoutIndex) {
+      myApp.services.JQPHP.postData(
+         'Gadgets',
+         'LoadFromDB',
+         [aLayoutIndex],
+         function (data, isSuccess, textstatus) {
+            if (isSuccess) {
+              $("#main-gadget-list").empty();
+               var varJSONData = JSON.parse(data);
+               var sLastDeviceName = '';
+               for (let iCntr = 0; iCntr < varJSONData.length; iCntr++) {
+                  var varData = varJSONData[iCntr];
+                  var bAddHeader = sLastDeviceName !== varData.DEVICENAME;
+                  if (bAddHeader) {
+                     sLastDeviceName = varData.DEVICENAME;
+                  }
+                  Gadgets.CreateGadgetElement(varData, bAddHeader);
+               }
+            }
+         }
+      );
+   }
+
    static LoadAddSwitchPage(page) {
       myApp.services.JQPHP.postData(
          'Devices',
          'LoadFromDB',
-         [myApp.Utils.Main.LayoutIndex()],
+         [myApp.Main.LayoutIndex()],
          function (data, isSuccess, textstatus) {
             if (isSuccess) {
                var varJSONData = JSON.parse(data);
@@ -80,6 +102,32 @@ class Gadgets {
          '<option value="' + aIndex + '">' + aSwitchName + '</option>'
       );
       document.getElementById('pintype-select').appendChild(taskItem);
+   }
+
+   static CreateGadgetElement(aItemData, aAddHeader) {
+     var sChecked = 'checked';
+     if (aItemData.VALUE === 'NT' || aItemData.VALUE === 'IT')  {
+       sChecked = 'unchecked';
+     }
+      var varThis = this;
+      if (aAddHeader) {
+         var taskItemHeader = ons.createElement('<ons-list-header>' + aItemData.DEVICENAME + '</ons-list-header>');
+         // myApp.UI.GadgetList().appendChild(taskItemHeader);
+      }
+      var taskItem = ons.createElement(
+         '<ons-list-item modifier="nodivider" gadgetID="' + aItemData.GADGETID + '">' +
+         '<div class="left"><img class="list-item__thumbnail" src="images/board/' + aItemData.BOARDID + '.png"></div>' +
+         '<span class="list-item__title">' + aItemData.GADGETNAME + '</span>' +
+         '<span class="list-item__subtitle">Board: ' + aItemData.DEVICENAME + '</span>' +
+         '<div class="right"><ons-switch ' + sChecked + '></ons-switch></div>' +
+         '</ons-list-item>'
+      );
+
+      myApp.UI.GadgetList().appendChild(taskItem);
+
+      taskItem.querySelector('.center').onclick = function () {
+         myApp.services.message.alert('Test');
+      }
    }
 
 }

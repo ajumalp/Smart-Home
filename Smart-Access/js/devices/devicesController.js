@@ -16,7 +16,7 @@ class DeviceController {
       }, function (aIndex) {
          switch (aIndex) {
             case 0:
-               myApp.services.Main.Navigator().pushPage('html/addDevice.html', {
+               myApp.Main.Navigator().pushPage('html/addDevice.html', {
                   animation: 'lift',
                   data: {
                      deviceData: varDevices
@@ -59,7 +59,7 @@ myApp.controllers.devices = {
                   devicetype: page.querySelector('#deviceType-select').value
                });
 
-               myApp.services.Main.Navigator().popPage();
+               myApp.Main.Navigator().popPage();
             } else {
                myApp.services.message.alert('You must enter caption');
             }

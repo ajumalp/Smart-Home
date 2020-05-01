@@ -20,7 +20,7 @@ myApp.controllers = {
           }).then(function (index) {
             switch (index) {
               case 0:
-                myApp.services.Main.Navigator().pushPage('html/addSwitch.html', {
+                myApp.Main.Navigator().pushPage('html/addSwitch.html', {
                   animation: 'lift'
                 });
                 break;
@@ -40,9 +40,10 @@ myApp.controllers = {
 
   menuPage: function (page) {
     [].forEach.call(page.querySelectorAll("[category-id^=main-menu-]"), myApp.services.categories.bindOnClickListener);
-
     // Change splitter animation depending on platform.
     document.querySelector('#mainSplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
+    // Load the Home layout data { Ajmal }
+    Gadgets.LoadData(0);
   },
 
   settingsPage: function (page) {
@@ -64,7 +65,7 @@ myApp.controllers = {
           // Set selected category to 'All', refresh and pop page.
           document.querySelector('#default-category-list ons-list-item ons-radio').checked = true;
           document.querySelector('#default-category-list ons-list-item').updateCategoryView();
-          myApp.services.Main.Navigator().popPage();
+          myApp.Main.Navigator().popPage();
 
         } else {
           // Show alert if the input title is empty.

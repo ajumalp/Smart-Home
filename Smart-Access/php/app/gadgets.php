@@ -32,4 +32,10 @@ class Gadgets {
       }
    }
 
+   static function LoadFromDB($aParams) {
+      echo SQLConnection::AsJSONEx("SELECT G.*, D.BOARDID, D.DEVICENAME FROM gadgets G LEFT JOIN devices D ON D.DEVICEID = G.DEVICEID WHERE D.USERID = %d AND G.LAYOUTINDEX = %d ORDER BY D.DEVICENAME",
+         AuthManager::getUserID(), $aParams[0]
+      );
+   }
+
 }
