@@ -125,7 +125,7 @@ use Exception;
       // but set the 1st user as the logged in user { Ajmal }
       if ($iSecurityLevel === AuthManager::eSecurityLevelNone) {
         $bHasUser = false;
-        if (!$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
+        if (!isset($_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) || !$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
           SQLConnection::FetchRowsEx("SELECT * FROM users ORDER BY USERID LIMIT 1", function ($aRow) use (&$bHasUser) {
             $_SESSION[AuthManager::cSESSION_ISLOGGEDIN] = true;
             $_SESSION[AuthManager::cSESSION_LOGGEDINUSERID] = $aRow['USERID'];
@@ -143,7 +143,7 @@ use Exception;
 
       // If security level is low or greater, we need to check loggin status { Ajmal }
       if ($iSecurityLevel >= AuthManager::eSecurityLevelLow) {
-        if (!$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
+        if (!isset($_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) || !$_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
           return false;
         } else if ($iSecurityLevel === AuthManager::eSecurityLevelLow) {
           return true;
@@ -193,7 +193,7 @@ use Exception;
       // start session and check loggin status { Ajmal }
       if ($iSecurityLevel >= AuthManager::eSecurityLevelLow) {
         session_start();
-        if ($_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
+        if (isset($_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) && $_SESSION[AuthManager::cSESSION_ISLOGGEDIN]) {
           return true;
         }
       }
