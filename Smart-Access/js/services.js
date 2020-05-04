@@ -59,6 +59,36 @@ myApp.services = {
       }
    },
 
+   mainPullHook: function () {
+      ons.ready(function () {
+         var pullHook = document.getElementById('pull-hook-main');
+
+         pullHook.addEventListener('changestate', function (event) {
+            var message = '';
+
+            switch (event.state) {
+               case 'initial':
+                  message = 'Pull to refresh';
+                  break;
+               case 'preaction':
+                  message = 'Release';
+                  break;
+               case 'action':
+                  message = 'Loading...';
+                  break;
+            }
+
+            pullHook.innerHTML = message;
+         });
+
+         pullHook.onAction = function (done) {
+            Gadgets.LoadData(myApp.Main.LayoutIndex(), function () {
+               setTimeout(done, 50);
+            });
+         };
+      });
+   },
+
    sessionID: function () {
       return sessionStorage.getItem('es_sa_sessionID');
    },

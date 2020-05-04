@@ -63,16 +63,19 @@
             </div> -->
          </ons-toolbar>
 
+         <ons-pull-hook id="pull-hook-main"> Pull to refresh </ons-pull-hook>
+
          <ons-fab position="right bottom" component="button/add-control">
             <ons-icon icon="md-plus"></ons-icon>
          </ons-fab>
 
-         <ons-list id="main-gadget-list"> </ons-list>
+         <ons-list id="main-gadget-list" style="border: transparent;"> </ons-list>
       </ons-page>
    </template>
 
    <script>
       myApp.services.login();
+      myApp.services.mainPullHook();
    </script>
 </body>
 

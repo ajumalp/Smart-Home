@@ -38,4 +38,8 @@ class StrHelper {
       return substr($source, 0, strlen($startText)) === $startText;
    }
 
+   public static function EndWith(string $source, string $endText): bool {
+      return substr($source, strlen($source) - strlen($endText), strlen($source)) === $endText;
+   }
+
 }

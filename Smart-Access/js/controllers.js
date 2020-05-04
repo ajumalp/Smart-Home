@@ -1,6 +1,9 @@
-/***********************************************************************
- * App Controllers. These controllers will be called on page initialization. *
- ***********************************************************************/
+/*
+ * Developed by Ajmal Muhammad P
+ * Contact me @ ajumalp@gmail.com
+ * https://owner.erratums.com
+ * Date created: 19-Apr-2020
+ */
 
 myApp.controllers = {
 
@@ -43,7 +46,7 @@ myApp.controllers = {
     // Change splitter animation depending on platform.
     document.querySelector('#mainSplitter').left.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
     // Load the Home layout data { Ajmal }
-    Gadgets.LoadData(0);
+    Gadgets.LoadData();
   },
 
   settingsPage: function (page) {

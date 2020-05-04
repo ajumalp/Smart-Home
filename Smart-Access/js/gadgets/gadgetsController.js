@@ -19,8 +19,9 @@ myApp.controllers.gadgets = {
                   deviceid: varDevice.options[varDevice.selectedIndex].getAttribute('deviceid'),
                   boardtype: varDevice.options[varDevice.selectedIndex].getAttribute('boardtype'),
                   pintype: page.querySelector('#pintype-select').value,
-                  hidepair: page.querySelector('#hidePair-check').checked,
+                  hidepair: false, // page.querySelector('#hidePair-check').checked,
                   inverted: page.querySelector('#inverted-check').checked
+                  // icon: page.querySelector('#gadget-icon-select').value
                });
                myApp.Main.Navigator().popPage();
             } else {

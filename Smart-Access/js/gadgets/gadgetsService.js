@@ -7,6 +7,33 @@
 
 class Gadgets {
 
+   static ChangeListener(aGadgetID) {
+      var varGadgetElement = document.getElementById('gadget-switch-id-' + aGadgetID);
+      var bIsChecked = varGadgetElement.lastChild.lastChild.checked;
+      var sPinType = varGadgetElement.getAttribute('pinType');
+      var bInverted = varGadgetElement.getAttribute('inverted') === 'T';
+
+      var sState = '';
+      if (bInverted) {
+         sState = bIsChecked ? 'IF' : 'IT';
+      } else {
+         sState = bIsChecked ? 'NT' : 'NF';
+      }
+
+      myApp.services.JQPHP.postData(
+         'Gadgets',
+         'UpdateSwitchState',
+         [sState, aGadgetID, sPinType],
+         function (obj, isSuccess, textstatus) {
+            if (obj === 'success') {
+               Gadgets.LoadData();
+            } else {
+               myApp.services.message.alert(obj);
+            }
+         }
+      );
+   }
+
    static SaveSwitch(aData) {
       var varThis = this;
       myApp.services.JQPHP.postData(
@@ -42,14 +69,18 @@ class Gadgets {
       }
    }
 
-   static LoadData(aLayoutIndex) {
+   static LoadData(aLayoutIndex = null, aOnSuccessEvent = null) {
+      if (aLayoutIndex === null) {
+         aLayoutIndex = myApp.Main.LayoutIndex();
+      }
+
       myApp.services.JQPHP.postData(
          'Gadgets',
          'LoadFromDB',
          [aLayoutIndex],
          function (data, isSuccess, textstatus) {
             if (isSuccess) {
-              $("#main-gadget-list").empty();
+               $("#main-gadget-list").empty();
                var varJSONData = JSON.parse(data);
                var sLastDeviceName = '';
                for (let iCntr = 0; iCntr < varJSONData.length; iCntr++) {
@@ -59,6 +90,9 @@ class Gadgets {
                      sLastDeviceName = varData.DEVICENAME;
                   }
                   Gadgets.CreateGadgetElement(varData, bAddHeader);
+               }
+               if (aOnSuccessEvent !== null) {
+                  aOnSuccessEvent();
                }
             }
          }
@@ -104,22 +138,29 @@ class Gadgets {
       document.getElementById('pintype-select').appendChild(taskItem);
    }
 
+   static CreateIconList() {
+      var taskItem = ons.createElement(
+         '<option value="' + aIndex + '">' + aSwitchName + '</option>'
+      );
+      document.getElementById('gadget-icon-select').appendChild(taskItem);
+   }
+
    static CreateGadgetElement(aItemData, aAddHeader) {
-     var sChecked = 'checked';
-     if (aItemData.VALUE === 'NT' || aItemData.VALUE === 'IT')  {
-       sChecked = 'unchecked';
-     }
+      var sChecked = 'checked';
+      if (aItemData.VALUE === 'NF' || aItemData.VALUE === 'IT') {
+         sChecked = 'unchecked';
+      }
       var varThis = this;
       if (aAddHeader) {
          var taskItemHeader = ons.createElement('<ons-list-header>' + aItemData.DEVICENAME + '</ons-list-header>');
-         // myApp.UI.GadgetList().appendChild(taskItemHeader);
+         myApp.UI.GadgetList().appendChild(taskItemHeader);
       }
       var taskItem = ons.createElement(
-         '<ons-list-item modifier="nodivider" gadgetID="' + aItemData.GADGETID + '">' +
+         '<ons-list-item modifier="nodivider" style="min-height: 60px;" id="gadget-switch-id-' + aItemData.GADGETID + '" pinType="' + aItemData.PINTYPE + '" inverted="' + aItemData.INVERTED + '">' +
          '<div class="left"><img class="list-item__thumbnail" src="images/board/' + aItemData.BOARDID + '.png"></div>' +
          '<span class="list-item__title">' + aItemData.GADGETNAME + '</span>' +
          '<span class="list-item__subtitle">Board: ' + aItemData.DEVICENAME + '</span>' +
-         '<div class="right"><ons-switch ' + sChecked + '></ons-switch></div>' +
+         '<div class="right" id="cbGadget"><ons-switch ' + sChecked + ' id="cbGadget" onchange="Gadgets.ChangeListener(' + aItemData.GADGETID + ')"></ons-switch></div>' +
          '</ons-list-item>'
       );
 

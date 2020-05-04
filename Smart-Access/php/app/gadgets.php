@@ -15,6 +15,15 @@ use ES\Core\UnunauthorizedAccessException;
 
 class Gadgets {
 
+   static function IsMyGadget($aGadgetID): bool {
+      $bResult = false;
+      SQLConnection::FetchRowsEx("SELECT USERID FROM devices D LEFT JOIN gadgets G ON G.DEVICEID = D.DEVICEID WHERE G.GADGETID = %d LIMIT 1",
+         $aGadgetID, function ($aRow) use (&$bResult) {
+         $bResult = $aRow['USERID'] === AuthManager::getUserID();
+      });
+      return $bResult;
+   }
+
    static function SaveItemToDB($aParams) {
       if (!Devices::IsMyDevice($aParams[1])) {
          throw new UnunauthorizedAccessException();
@@ -36,6 +45,24 @@ class Gadgets {
       echo SQLConnection::AsJSONEx("SELECT G.*, D.BOARDID, D.DEVICENAME FROM gadgets G LEFT JOIN devices D ON D.DEVICEID = G.DEVICEID WHERE D.USERID = %d AND G.LAYOUTINDEX = %d ORDER BY D.DEVICENAME",
          AuthManager::getUserID(), $aParams[0]
       );
+   }
+
+   static function UpdateSwitchState($aParams) {
+      if (!Gadgets::IsMyGadget($aParams[1])) {
+         throw new UnunauthorizedAccessException();
+      }
+
+      if (1 === SQLConnection::ExecuteQueryEx("UPDATE gadgets SET VALUE = '%s' WHERE GADGETID = %d AND PINTYPE = '%s'",
+         $aParams[0], $aParams[1], $aParams[2])
+      ) {
+         echo cGEN_SUCCESS;
+      } else {
+         echo SQLConnection::LastError();
+      }
+   }
+
+   static function ImageList($aParams) {
+      // is_dir("../")
    }
 
 }
