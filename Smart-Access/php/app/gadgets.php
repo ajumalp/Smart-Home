@@ -12,6 +12,7 @@ namespace ES\SA;
 use ES\Core\AuthManager;
 use ES\Core\SQLConnection;
 use ES\Core\UnunauthorizedAccessException;
+use Utils\StrHelper;
 
 class Gadgets {
 
@@ -32,8 +33,8 @@ class Gadgets {
       $bIsInverted = $aParams[5];
       $sValue = "NF";
       if ($bIsInverted === 'T') $sValue = "IT";
-      if (1 === SQLConnection::ExecuteQueryEx("INSERT INTO gadgets (GADGETNAME, DEVICEID, PINTYPE, LAYOUTINDEX, HIDEPAIR, INVERTED, VALUE) VALUES ('%s', %d, '%s', %d, '%s', '%s', '%s')",
-         $aParams[0], $aParams[1], $aParams[2], $aParams[3], $aParams[4], $bIsInverted, $sValue)
+      if (1 === SQLConnection::ExecuteQueryEx("INSERT INTO gadgets (GADGETNAME, DEVICEID, PINTYPE, LAYOUTINDEX, HIDEPAIR, INVERTED, VALUE, IMAGECODE) VALUES ('%s', %d, '%s', %d, '%s', '%s', '%s', '%s')",
+         $aParams[0], $aParams[1], $aParams[2], $aParams[3], $aParams[4], $bIsInverted, $sValue, $aParams[6])
       ) {
          echo cGEN_SUCCESS;
       } else {
@@ -61,8 +62,38 @@ class Gadgets {
       }
    }
 
-   static function ImageList($aParams) {
-      // is_dir("../")
+   // We consider the name of all images is a number in order
+   // So the last image name is considered as the count { Ajmal }
+   static function ImageCount() {
+      $iResult = 0;
+      $dir = "../images/gadget/";
+      if (is_dir($dir)) {
+         if ($dh = opendir($dir)) {
+            while (($fileName = readdir($dh)) !== false){
+               $fileName = strtolower($fileName);
+               if (StrHelper::EndWith($fileName, ".png")) {
+                  $iFileName = (int) str_replace(".png", "", $fileName);
+                  if ($iFileName > $iResult) {
+                     $iResult = $iFileName;
+                  }
+               }
+           }
+           closedir($dh);
+         }
+      }
+      echo $iResult;
+   }
+
+   static function DeleteFromDB($aParams) {
+      if (!Gadgets::IsMyGadget($aParams[0])) {
+         throw new UnunauthorizedAccessException();
+      }
+
+      if (1 === SQLConnection::ExecuteQueryEx("DELETE FROM gadgets WHERE GADGETID = %d", $aParams[0])) {
+         echo cGEN_SUCCESS;
+      } else {
+         echo SQLConnection::LastError();
+      }
    }
 
 }

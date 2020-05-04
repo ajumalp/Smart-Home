@@ -96,6 +96,7 @@ myApp.services = {
    message: {
 
       alert: function (aMsg) {
+         if (aMsg === '' ) return;
          myApp.services.platform.changeTo('ios', function () {
             ons.notification.alert(aMsg);
          });
@@ -166,7 +167,7 @@ myApp.services = {
                case "signOut":
                   myApp.services.JQPHP.postData(
                      'AuthManager',
-                     'logout', null, function (obj, textstatus) {
+                     'logout', true, function (obj, textstatus) {
                         sessionStorage.clear();
                         window.location.reload();
                      }

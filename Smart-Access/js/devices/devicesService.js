@@ -42,9 +42,11 @@ class Devices {
          'DeleteFromDB',
          [aDeviceID],
          function (obj, isSuccess, textstatus) {
-            if (isSuccess) {
+            if (obj === 'success') {
                varThis.loadData(varThis.getSelectedLayoutIndex());
                myApp.services.message.alert('Device deleted successfully');
+            } else {
+               myApp.services.message.alert(obj);
             }
          }
       );

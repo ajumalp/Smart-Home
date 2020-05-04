@@ -8,6 +8,39 @@
 myApp.controllers.gadgets = {
 
    addSwitchPage: function (page) {
+
+      ons.ready(function () {
+         document.getElementById('add-switch-selectde-image').src = "images/gadget/2.png";
+         var varImageList = document.getElementById('list-item-images');
+
+         varImageList.delegate = {
+            createItemContent: function (i) {
+               var iIndex = parseInt(i + 1);
+               return ons.createElement('<ons-col width="fit-content"> ' +
+                  '<ons-list>' +
+                  '<ons-list-item tappable image-id="img-' + iIndex + '"' +
+                  'style="background-color: white; border: none; border-color: white;" modifier="nodivider" style="width: fit-content;">' +
+                  '<img class="list-item__thumbnail" src="images/gadget/' + iIndex + '.png" style="padding: 10px;">' +
+                  '</ons-list-item>' +
+                  '</ons-list>' +
+                  '</ons-col>');
+            },
+            countItems: function () {
+               return Gadgets.ImageCount();
+            }
+         };
+         varImageList.refresh();
+
+         [].forEach.call(page.querySelectorAll("[image-id^='img-']"), function (element) {
+            element.onclick = function (obj) {
+               var iImgIndex = element.getAttribute('image-id').replace('img-', '');
+               var varImage = document.getElementById('add-switch-selectde-image');
+               varImage.src = 'images/gadget/' + iImgIndex + '.png';
+               varImage.setAttribute('image-id', iImgIndex);
+            }.bind(element);
+         });
+      });
+
       Gadgets.LoadAddSwitchPage(page);
       [].forEach.call(page.querySelectorAll('[component="button/save-switch"]'), function (element) {
          element.onclick = function () {
@@ -20,8 +53,8 @@ myApp.controllers.gadgets = {
                   boardtype: varDevice.options[varDevice.selectedIndex].getAttribute('boardtype'),
                   pintype: page.querySelector('#pintype-select').value,
                   hidepair: false, // page.querySelector('#hidePair-check').checked,
-                  inverted: page.querySelector('#inverted-check').checked
-                  // icon: page.querySelector('#gadget-icon-select').value
+                  inverted: page.querySelector('#inverted-check').checked,
+                  imgcode: page.querySelector('#add-switch-selectde-image').getAttribute('image-id') + '.png'
                });
                myApp.Main.Navigator().popPage();
             } else {
