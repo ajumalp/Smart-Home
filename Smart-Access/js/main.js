@@ -5,6 +5,14 @@
  * Date created: 30-Apr-2020
  */
 
+window.onload = () => {
+  'use strict';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+}
+
 var showTemplateDialog = function () {
    var dialog = document.getElementById('my-dialog');
 
