@@ -1,11 +1,15 @@
+--
 -- phpMyAdmin SQL Dump
--- version 4.9.2
--- https://www.phpmyadmin.net/
+-- Contact me @ ajumalp@gmail.com
+-- Developed by Ajmal Muhammad P
+-- https://owner.erratums.com
 --
 -- Host: localhost
 -- Generation Time: May 01, 2020 at 03:30 PM
 -- Server version: 10.3.21-MariaDB
--- PHP Version: 5.6.40
+-- PHP Version: 7.2.30
+--
+-- --------------------------------------------------------
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +23,22 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+-- Database User: es_shome
+--
+
+CREATE USER IF NOT EXISTS 'es_shome'@'localhost' IDENTIFIED BY 'C@RoAJ26MV6asQ6W7';
+
+GRANT ALL PRIVILEGES ON * . * TO 'es_shome'@'localhost';
+
+-- --------------------------------------------------------
+
+--
 -- Database: `erratums_shome`
 --
+
+CREATE DATABASE IF NOT EXISTS `erratums_shome`;
+
+USE `erratums_shome`;
 
 -- --------------------------------------------------------
 
