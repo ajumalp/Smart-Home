@@ -42,7 +42,7 @@ myApp.services = {
 
    login: function () {
       try {
-         this.JQPHP.postData('ES\\Core\\AuthManager', 'getSecurityLevel', true,
+         myApp.services.JQPHP.postData('ES\\Core\\AuthManager', 'getSecurityLevel', true,
             function (obj, isSuccess, textstatus) {
                if (obj != 0) {
                   var sSessionID = myApp.services.sessionID();
@@ -166,7 +166,7 @@ myApp.services = {
 
                case "signOut":
                   myApp.services.JQPHP.postData(
-                     'AuthManager',
+                     'ES\\Core\\AuthManager',
                      'logout', true, function (obj, textstatus) {
                         sessionStorage.clear();
                         window.location.reload();

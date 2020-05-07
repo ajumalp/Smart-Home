@@ -59,7 +59,9 @@ use Utils\StrHelper;
             }
          }
 
-         if (AuthManager::Validate($varPData->getSessionID())) {
+         if ($varPData->getFunctionName() === 'getSecurityLevel') {
+            return $varPData;
+         } else if (AuthManager::Validate($varPData->getSessionID())) {
             return $varPData;
          } else {
             throw new UnunauthorizedAccessException();
