@@ -44,7 +44,7 @@ myApp.services = {
       try {
          myApp.services.JQPHP.postData('ES\\Core\\AuthManager', 'getSecurityLevel', true,
             function (obj, isSuccess, textstatus) {
-               if (obj != 0) {
+               if (obj != '0') {
                   var sSessionID = myApp.services.sessionID();
                   if (sSessionID === null) {
                      window.location.href = "login/";
@@ -96,7 +96,7 @@ myApp.services = {
    message: {
 
       alert: function (aMsg) {
-         if (aMsg === '' ) return;
+         if (aMsg === '') return;
          myApp.services.platform.changeTo('ios', function () {
             ons.notification.alert(aMsg);
          });
@@ -165,13 +165,9 @@ myApp.services = {
                   break;
 
                case "signOut":
-                  myApp.services.JQPHP.postData(
-                     'ES\\Core\\AuthManager',
-                     'logout', true, function (obj, textstatus) {
-                        sessionStorage.clear();
-                        window.location.reload();
-                     }
-                  );
+                  sessionStorage.clear();
+                  window.location.reload();
+                  myApp.services.JQPHP.postData('ES\\Core\\AuthManager', 'logout', true);
                   break;
             }
          };
