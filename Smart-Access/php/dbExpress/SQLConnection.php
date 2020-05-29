@@ -81,7 +81,7 @@ include_once __DIR__ . "/../config.php";
      ---------------------------------------------- Static Functions ------------------------------------------------
      ****************************************************************************************************************/
 
-    public static function New($aSQLConnEvent = null): SQLConnection {
+    public static function New($aSQLConnEvent = null) {
       $varConn = new SQLConnection(cDB_HOSTNAME . ':' . cDB_PORT, cDB_USERNAME, cDB_PASSWORD, cDB_DATABASE);
       $varConnError = mysqli_connect_error();
       if ($varConnError) {

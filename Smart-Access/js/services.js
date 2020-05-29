@@ -62,6 +62,7 @@ myApp.services = {
    mainPullHook: function () {
       ons.ready(function () {
          var pullHook = document.getElementById('pull-hook-main');
+         if (pullHook === null) return;
 
          pullHook.addEventListener('changestate', function (event) {
             var message = '';

@@ -50,30 +50,35 @@ myApp.controllers = {
   },
 
   settingsPage: function (page) {
-    // Set button functionality to save a new task.
-    [].forEach.call(page.querySelectorAll('[component="button/save-task"]'), function (element) {
+
+    myApp.services.JQPHP.postData("Options", "LoadFromDB",
+      ['MQTT_'], function (obj, isSuccess, textstatus) {
+        var varData = JSON.parse(obj);
+        varData.forEach(function (aItem) {
+          if (aItem.OPT_NAME === 'MQTT_HOST') page.querySelector('#mqtt-host-input').value = aItem.OPT_VALUE;
+          else if (aItem.OPT_NAME === 'MQTT_PORT') page.querySelector('#mqtt-port-input').value = aItem.OPT_VALUE;
+          else if (aItem.OPT_NAME === 'MQTT_PATH') page.querySelector('#mqtt-path-input').value = aItem.OPT_VALUE;
+        });
+      }
+    );
+
+
+    [].forEach.call(page.querySelectorAll('[component="button/save-settings"]'), function (element) {
       element.onclick = function () {
-        var newTitle = page.querySelector('#title-input').value;
+        var sMQTTHost = page.querySelector('#mqtt-host-input').value;
+        var sMQTTPort = page.querySelector('#mqtt-port-input').value;
+        var sMQTTPath = page.querySelector('#mqtt-path-input').value;
 
-        if (newTitle) {
-          // If input title is not empty, create a new task.
-          myApp.services.tasks.create({
-            title: newTitle,
-            category: page.querySelector('#category-input').value,
-            description: page.querySelector('#description-input').value,
-            highlight: page.querySelector('#highlight-input').checked,
-            urgent: page.querySelector('#urgent-input').checked
-          });
+        myApp.services.JQPHP.postData('Options', 'SaveToDB',
+          ['MQTT_HOST=' + sMQTTHost,
+          'MQTT_PORT=' + sMQTTPort,
+          'MQTT_PATH=' + sMQTTPath],
+          function (obj, isSuccess, textstatus) {
+            myApp.services.message.alert('Settings Saved');
+          }
+        );
 
-          // Set selected category to 'All', refresh and pop page.
-          document.querySelector('#default-category-list ons-list-item ons-radio').checked = true;
-          document.querySelector('#default-category-list ons-list-item').updateCategoryView();
-          myApp.Main.Navigator().popPage();
-
-        } else {
-          // Show alert if the input title is empty.
-          ons.notification.alert('You must provide a task title.');
-        }
+        myApp.Main.Navigator().popPage();
       };
     });
   },

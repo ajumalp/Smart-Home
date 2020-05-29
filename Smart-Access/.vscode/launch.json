@@ -7,7 +7,21 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Launch Chrome [Android]",
+            "url": "http://192.168.1.125/sa/GitRepo/trunk/Smart-Access/?platform=android",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome [IOS]",
+            "url": "http://192.168.1.125/sa/GitRepo/trunk/Smart-Access/?platform=ios",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Launch Firefox [Android]",
             "url": "http://192.168.1.125/sa/GitRepo/trunk/Smart-Access/?platform=android",
             "webRoot": "${workspaceFolder}"
         }
