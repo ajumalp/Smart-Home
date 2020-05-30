@@ -6,11 +6,11 @@
  */
 
 window.onload = () => {
-  'use strict';
+   'use strict';
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
-  }
+   if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+   }
 }
 
 var showTemplateDialog = function () {
@@ -38,6 +38,32 @@ myApp.Main = {
 
    Navigator: function () {
       return document.querySelector('#mainNavigator');
+   },
+
+   MQTTClient: function () {
+      myApp.services.JQPHP.postData("Options", "LoadFromDB",
+         ['MQTT_'], function (obj, isSuccess, textstatus) {
+            var sMQTTHost = ''; var sMQTTPort = ''; var sMQTTPath = '';
+
+            var varData = JSON.parse(obj);
+            varData.forEach(function (aItem) {
+               if (aItem.OPT_NAME === 'MQTT_HOST') sMQTTHost = aItem.OPT_VALUE;
+               else if (aItem.OPT_NAME === 'MQTT_PORT') sMQTTPort = aItem.OPT_VALUE;
+               else if (aItem.OPT_NAME === 'MQTT_PATH') sMQTTPath = aItem.OPT_VALUE;
+            });
+
+            if (sMQTTHost !== '') {
+               var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
+               mqttClient = new Paho.MQTT.Client(sMQTTHost, Number(sMQTTPort), sMQTTPath, clientId);
+               function onConnect() { mqttClient.subscribe("smarthome/notification"); }
+               mqttClient.connect({ onSuccess: onConnect });
+               mqttClient.onConnectionLost = function (responseObject) { console.log("Connection Lost: " + responseObject.errorMessage); }
+               mqttClient.onMessageArrived = function (message) {
+                  Gadgets.LoadData(myApp.Main.LayoutIndex());
+               }
+            }
+         }
+      );
    }
 
 };

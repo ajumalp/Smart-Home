@@ -12,9 +12,26 @@ namespace ES\SA;
 use ES\Core\AuthManager;
 use ES\Core\SQLConnection;
 use ES\Core\UnunauthorizedAccessException;
+use Exception;
+use MQTTClient;
 use Utils\StrHelper;
 
+include_once __DIR__ . "/../mqtt/MQTTClient.php";
+include_once __DIR__ . "/../config.php";
+
 class Gadgets {
+
+   private static function sendPushNotification() {
+      try {
+         $mqttClient = new MQTTClient(cMQTT_HOST, cMQTT_PORT, "Smart-Home-Main-" . uniqid());
+         if ($mqttClient->connect()) {
+            $mqttClient->publish("smarthome/notification", "True");
+            $mqttClient->close();
+         }
+     } catch (exception $e) {
+       // Do nothing { Ajmal }
+     }
+   }
 
    static function IsMyGadget($aGadgetID): bool {
       $bResult = false;
@@ -43,7 +60,7 @@ class Gadgets {
    }
 
    static function LoadFromDB($aParams) {
-      echo SQLConnection::AsJSONEx("SELECT G.*, D.BOARDID, D.DEVICENAME FROM gadgets G LEFT JOIN devices D ON D.DEVICEID = G.DEVICEID WHERE D.USERID = %d AND G.LAYOUTINDEX = %d ORDER BY D.DEVICENAME",
+      echo SQLConnection::AsJSONEx("SELECT G.*, D.BOARDID, D.DEVICENAME FROM gadgets G LEFT JOIN devices D ON D.DEVICEID = G.DEVICEID WHERE D.USERID = %d AND G.LAYOUTINDEX = %d ORDER BY D.DEVICENAME, G.GADGETNAME",
          AuthManager::getUserID(), $aParams[0]
       );
    }
@@ -56,6 +73,7 @@ class Gadgets {
       if (1 === SQLConnection::ExecuteQueryEx("UPDATE gadgets SET VALUE = '%s' WHERE GADGETID = %d AND PINTYPE = '%s'",
          $aParams[0], $aParams[1], $aParams[2])
       ) {
+         Gadgets::sendPushNotification();
          echo cGEN_SUCCESS;
       } else {
          echo SQLConnection::LastError();

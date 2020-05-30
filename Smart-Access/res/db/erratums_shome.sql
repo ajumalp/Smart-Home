@@ -5,7 +5,7 @@
 -- https://owner.erratums.com
 --
 -- Host: localhost
--- Generation Time: May 01, 2020 at 03:30 PM
+-- Generation Time: May 30, 2020 at 04:06 PM
 -- Server version: 10.3.21-MariaDB
 -- PHP Version: 7.2.30
 --
@@ -35,9 +35,7 @@ GRANT ALL PRIVILEGES ON * . * TO 'es_shome'@'localhost';
 --
 -- Database: `erratums_shome`
 --
-
-CREATE DATABASE IF NOT EXISTS `erratums_shome`;
-
+CREATE DATABASE IF NOT EXISTS `erratums_shome` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `erratums_shome`;
 
 -- --------------------------------------------------------
@@ -89,7 +87,20 @@ CREATE TABLE `gadgets` (
   `LAYOUTINDEX` smallint(6) NOT NULL,
   `HIDEPAIR` char(1) NOT NULL DEFAULT 'F',
   `INVERTED` char(1) NOT NULL DEFAULT 'F',
-  `VALUE` varchar(50) NOT NULL
+  `VALUE` varchar(50) NOT NULL,
+  `IMAGECODE` varchar(50) NOT NULL DEFAULT '1.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `OID` int(11) NOT NULL,
+  `OPT_NAME` varchar(50) NOT NULL,
+  `OPT_VALUE` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -142,6 +153,13 @@ ALTER TABLE `gadgets`
   ADD KEY `FK_GADGET_DEVICE` (`DEVICEID`);
 
 --
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD PRIMARY KEY (`OID`),
+  ADD UNIQUE KEY `UK_OPTION_NAME` (`OPT_NAME`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -163,6 +181,12 @@ ALTER TABLE `devices`
 --
 ALTER TABLE `gadgets`
   MODIFY `GADGETID` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `OID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

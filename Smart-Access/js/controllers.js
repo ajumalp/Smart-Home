@@ -62,7 +62,6 @@ myApp.controllers = {
       }
     );
 
-
     [].forEach.call(page.querySelectorAll('[component="button/save-settings"]'), function (element) {
       element.onclick = function () {
         var sMQTTHost = page.querySelector('#mqtt-host-input').value;

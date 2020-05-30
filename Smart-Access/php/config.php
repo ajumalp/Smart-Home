@@ -18,6 +18,12 @@ namespace ES\Core;
   define('cDB_DATABASE', 'erratums_shome');
   define('cDB_PORT', '3307');
 
+  // MQTT Settings
+  define('cMQTT_HOST', '192.168.1.125');
+  define('cMQTT_PORT', '1883');
+  define('cMQTT_PATH', '');
+
+
   // General
   define('cGEN_SECURITY_LEVEL', 0);
   define('cGEN_SUCCESS', 'success');

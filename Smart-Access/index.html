@@ -33,6 +33,7 @@
    <script src="js/devices/devicesService.js"></script>
    <script src="js/gadgets/gadgetsController.js"></script>
    <script src="js/gadgets/gadgetsService.js"></script>
+   <script src="js/mqttws31.min.js"></script>
 
    <link rel="icon" href="favicon.ico?" type="image/x-icon">
    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
@@ -86,6 +87,7 @@
    <script>
       myApp.services.login();
       myApp.services.mainPullHook();
+      myApp.Main.MQTTClient();
    </script>
 </body>
 
