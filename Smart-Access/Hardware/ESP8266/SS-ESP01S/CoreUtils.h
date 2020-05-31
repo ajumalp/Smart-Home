@@ -16,6 +16,7 @@ int writeToMem(int addrStart, String data);
 String readFromMem(int wordIndex);
 
 class EDelay {
+
   private:
     unsigned long FDelay, FLastMillis;
     bool FStop;
@@ -29,6 +30,7 @@ class EDelay {
     void stop();
     void restart();
     bool canContinue();
+
 };
 
 #endif
