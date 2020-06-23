@@ -15,7 +15,7 @@ _This application helps to control electronic devices remotely. This can be inst
 
 1. This support PWA [Progressive Web App]. So that this can be easily installed into any OS supporting PWA
 1. The Arduino code for the devices is als oincluded in the [Hardware](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/Hardware) folder. 
-1. Mainly supporting ESP8266 devices 
+1. Mainly supporting [ESP8266](https://github.com/Erratums/ESP8266/wiki) devices 
 1. You are always free to modify the code for your requirements 
 
 ---    
