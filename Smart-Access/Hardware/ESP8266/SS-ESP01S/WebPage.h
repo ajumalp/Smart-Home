@@ -61,6 +61,14 @@ button:hover {opacity: 0.8;}
     <button type="submit" class="savebtn">Save</button>
   </div>
 </form>
+<form action="/saveTopic" method="post">
+  <div class="container">
+  <h2 align="center">Notification Settings</h2>
+    <label for="ssid"><b>Unique Device ID</b></label>
+    <input type="text" placeholder="Enter Unique Device ID" name="mqttTopic" id="mqttTopic">
+    <button type="submit" class="savebtn">Save</button>
+  </div>
+</form>
 </div>
 </body></html>
 )=====";

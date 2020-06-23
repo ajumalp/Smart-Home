@@ -13,23 +13,27 @@
 #include <ESP8266WebServer.h>
 #include "CoreUtils.h"
 
+typedef void (*OnMQTTTopicChanged_t)(void);
+
 class ESmartHomeServer {
 
    private:
-      ESP8266WebServer FServer;
       EDelay FDlyWiFiConn;
-
-   public:
-      ESmartHomeServer();
-
-      void InitAll();
-      void connectToMyWiFi();
+      ESP8266WebServer FServer;
+      OnMQTTTopicChanged_t FMQTTTopicChangeHandler;
 
       void handleRoot();
-      void handleClient();
       void handleSave();
       void handleNotFound();
       void handleSaveHotspot();
+      void handleSaveTopic();
+
+   public:
+      ESmartHomeServer();
+      void InitAll();
+      void connectToMyWiFi();
+      void handleClient();
+      void OnMQTTTopicChanged(OnMQTTTopicChanged_t aValue);
 
 };
 

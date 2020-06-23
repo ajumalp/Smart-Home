@@ -10,6 +10,8 @@
 #include <PubSubClient.h>
 #include "WebPage.h"
 #include "Server.h"
+#include "Client.h"
+#include "CharUtils.h"
 
 const char cWiFiName[] = "SS-ESP01S-Relay";
 const char cWiFiPass[] = "trytest123";
@@ -18,23 +20,29 @@ const String cDeviceID = "1";
 // Enter a unique topic name to which this device subscribe
 const String cMQTTSubTopic = "SmartHome/DevSub-" + cDeviceID;
 
-const IPAddress cMQTTServerAddr (192, 168, 1, 125);
+const IPAddress cMQTTServerAddr (192, 168, 18, 11);
 // const char cMQTTServerAddr[] = "mqtt.eclipse.org";
 const int cMQTTServerPort = 1883;
 
 const byte cRelayStateLow = LOW;
 const byte cRelayStateHigh = HIGH;
 
+// Don't forget to chnage Baud Rate to 9600 for 1 Channel ESP01S Relay Board { Ajmal }
 // #define SERIAL_BAUD_RATE 9600
 #define SERIAL_BAUD_RATE 115200
 
 ESmartHomeServer eSHServer;
+ESmartHomeClient eSHClient;
 WiFiClient mqttWifi;
 PubSubClient mqttClient(mqttWifi);
+
+String sKey, sData;
 
 void setup() {
   Serial.begin(SERIAL_BAUD_RATE);
   while (!Serial);
+
+  resetData();
 
   delay(100);
   EEPROM.begin(512);
@@ -50,9 +58,15 @@ void setup() {
 
   // Connect esp module to your wifi router
   eSHServer.connectToMyWiFi();
+  eSHServer.OnMQTTTopicChanged(EventMQTTTopicChanged);
 
   // Update MQTT Server and Port
   updateMQTTDetails();
+}
+
+void EventMQTTTopicChanged() {
+  mqttClient.disconnect();
+  mqttReconnect();
 }
 
 void loop() {
@@ -64,6 +78,19 @@ void loop() {
 
   // This function internally check with the MQTT server for updation to the subscribed topic
   mqttClient.loop();
+
+  if (!processWebResponds()) {
+    eSHClient.fetchData("{MYUID}", "NOData");
+  }
+}
+
+bool processWebResponds() {
+  if (!eSHClient.available()) return false;
+
+  char ch = eSHClient.read();
+  processData(ch);
+
+  return true;
 }
 
 void InitAccessPoint() {
@@ -84,6 +111,39 @@ void InitAccessPoint() {
   Serial.println(F("HTTP server started"));
 }
 
+void processMessage(String aKey, String aData) {
+  Serial.print(F("Key: "));
+  Serial.print(aKey);
+  Serial.print(F(", Data: "));
+  Serial.println(aData);
+
+  String sPinIndex = "";
+  if (aKey.startsWith("_PTYPE_D")) {
+    sPinIndex = aKey.substring(8);
+    if (aData.equals("ON")) sendRelayUpdateCommand(sPinIndex.toInt(), cRelayStateHigh);
+    else sendRelayUpdateCommand(sPinIndex.toInt(), cRelayStateLow);
+  }
+}
+
+void processData(char chr) {
+  if ((chr == cNewLineChr) || (chr == cReturnChr)) {
+    if (!sKey.equals(cEmptyStr)) {
+      processMessage(sKey, sData);
+    }
+    resetData();
+  } else if (chr == cEqualTo) {
+    sKey = sData;
+    sData = cEmptyStr;
+  } else {
+    sData += chr;
+  }
+}
+
+void resetData() {
+  sKey = cEmptyStr;
+  sData = cEmptyStr;
+}
+
 void mqttCallback(char* topic, byte* payload, unsigned int length) {
   Serial.println(F("MQTT message received"));
   String sMsg = "";
@@ -92,14 +152,8 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
     sMsg += chr;
   }
 
-  if (sMsg.equals("D0=ON")) sendRelayUpdateCommand(0, cRelayStateHigh);
-  else if (sMsg.equals("D0=OFF")) sendRelayUpdateCommand(0, cRelayStateLow);
-  else if (sMsg.equals("D1=ON")) sendRelayUpdateCommand(1, cRelayStateHigh);
-  else if (sMsg.equals("D1=OFF")) sendRelayUpdateCommand(1, cRelayStateLow);
-  else if (sMsg.equals("D2=ON")) sendRelayUpdateCommand(2, cRelayStateHigh);
-  else if (sMsg.equals("D2=OFF")) sendRelayUpdateCommand(2, cRelayStateLow);
-  else if (sMsg.equals("D3=ON")) sendRelayUpdateCommand(3, cRelayStateHigh);
-  else if (sMsg.equals("D3=OFF")) sendRelayUpdateCommand(3, cRelayStateLow);
+  // We received a notification, now fetch data from server { Ajmal }
+  eSHClient.enableDataFetch();
 }
 
 // Constatnts { Ajmal }
@@ -144,12 +198,21 @@ void mqttReconnect() {
 
   // for now simply use above generated Client ID as Client ID and user name.
   if (mqttClient.connect(sClientID.c_str())) {
-    mqttClient.subscribe(cMQTTSubTopic.c_str());
+    mqttClient.subscribe(getMQTTTopicName().c_str());
     Serial.println(F("connected"));
   } else {
     Serial.print(F("failed, rc="));
     Serial.print(mqttClient.state());
-    Serial.println(F(" try again in 3 seconds"));
-    delay(3000);
+    Serial.println(F(" try again in 1 second"));
+    delay(1000);
   }
+}
+
+String getMQTTTopicName() {
+  String sTopicName = readFromMem(2);
+  sTopicName.trim();
+  if (!sTopicName.equals(""))
+    return sTopicName;
+
+  return cMQTTSubTopic;
 }

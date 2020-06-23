@@ -8,6 +8,7 @@
  */
 
 #include <Arduino.h>
+#include <EEPROM.h>
 #include <WiFiClient.h>
 #include <ESP8266WiFi.h>
 #include "Server.h"
@@ -18,6 +19,8 @@ ESmartHomeServer::ESmartHomeServer() {
 }
 
 void ESmartHomeServer::InitAll() {
+  FMQTTTopicChangeHandler = NULL;
+
   FServer.on("/", std::bind(&ESmartHomeServer::handleRoot, this));
   FServer.onNotFound(std::bind(&ESmartHomeServer::handleNotFound, this));
 
@@ -123,4 +126,22 @@ void ESmartHomeServer::handleSaveHotspot() {
     FServer.send(200, "text/html", F("<HTML><HEAD></HEAD><BODY><CENTER><H1>Hotspot Settings Saved</H1></CENTER></BODY></HTML>"));
     Serial.println(F("Hotspot credentials updated."));
   }
+}
+
+void ESmartHomeServer::handleSaveTopic() {
+  String sTemp = FServer.arg(F("mqttTopic"));
+  sTemp.trim();
+  if (sTemp.length() != 0) {
+    if (writeToMem(2, sTemp) > 0) {
+      if (FMQTTTopicChangeHandler != NULL) {
+        FMQTTTopicChangeHandler();
+        // mqttClient.disconnect();
+      }
+      FServer.send(200, "text/html", F("<HTML><HEAD></HEAD><BODY><CENTER><H1>MQTT Settings Saved</H1></CENTER></BODY></HTML>"));
+    }
+  }
+}
+
+void ESmartHomeServer::OnMQTTTopicChanged(OnMQTTTopicChanged_t aValue) {
+  FMQTTTopicChangeHandler = aValue;
 }
