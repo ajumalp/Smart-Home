@@ -1,3 +1,0 @@
-<Files SQLConnection.php>
-    deny from all
-</Files>

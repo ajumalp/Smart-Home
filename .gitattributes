@@ -1,6 +1,0 @@
-*.php linguist-detectable=true
-*.cpp linguist-detectable=true
-*.ino linguist-detectable=true
-*.js linguist-detectable=true
-*.html linguist-detectable=true
-*.css linguist-detectable=true
