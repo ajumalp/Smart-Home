@@ -5,7 +5,7 @@
     <a href="https://erratums.com"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>
 </p>
 
-> **_For more details, visit [WiKi Page](https://github.com/ajumalp/Smart-Home/wiki)_**    
+> **_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
 ---
 
 # Automate your Home/Office      
