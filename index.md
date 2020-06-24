@@ -1,3 +1,5 @@
+> **_For more details, visit [WiKi Page](https://github.com/ajumalp/Smart-Home/wiki)_**    
+---
 
 # Automate your Home/Office      
 _This application helps to control electronic devices remotely. This can be installed in your localnetwork, and if you have a static IP you can access your devices from any where. You need a WiFi/Ethernet at Home/Office to connect Arduino devices. Then from your phone, you can control connected appliances_    
