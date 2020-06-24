@@ -11,12 +11,56 @@ _This application helps to control electronic devices remotely. This can be inst
 
 ---    
     
-### Below are few screnshots of the Application     
-|Main Screen [Android]|Main Screen [Other]|Devices|Main Menu|Login Screen|
-|-|-|-|-|-|
-|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-android-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-iphone-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-device-list.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-menu-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-login-screen.jpg)|
+### Below are few screnshots of the Application    
 
-### Below are few supporting Devices     
-|1 Channel Module|1 Channel Module|4 Channel Module|1 Channel Module|
-|-|-|-|-|
-|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/1-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/2-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/4-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/esp8266-1-ch-relay-module.png)|
+<table>
+    <tr>
+        <th>Main Screen [Android]</th>
+        <th>Main Screen [Other]</th>
+        <th>Devices</th>
+        <th>Main Menu</th>
+        <th>Login Screen</th>
+    </tr>
+    <tr>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-android-screen.jpg"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-iphone-screen.jpg"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-device-list.jpg"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-menu-screen.jpg"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-login-screen.jpg"/>
+        </th>
+    </tr>
+</table>     
+
+### Below are few supporting Devices      
+
+<table>
+    <tr>
+        <th>1 Channel Module</th>
+        <th>2 Channel Module</th>
+        <th>4 Channel Module</th>
+        <th>ESP8266 1 Channel Module</th>
+    </tr>
+    <tr>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/1-ch-relay-module.png"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/2-ch-relay-module.png"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/4-ch-relay-module.png"/>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/esp8266-1-ch-relay-module.png"/>
+        </th>
+    </tr>
+</table>    
