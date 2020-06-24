@@ -70,7 +70,8 @@ CREATE TABLE `devices` (
   `DEVICENAME` varchar(30) NOT NULL,
   `USERID` int(11) NOT NULL,
   `LAYOUTINDEX` smallint(6) NOT NULL,
-  `BOARDID` int(11) NOT NULL
+  `BOARDID` int(11) NOT NULL,
+  `UNIQUEID` varchar(100) NOT NULL
 ) ;
 
 -- --------------------------------------------------------
@@ -139,7 +140,8 @@ ALTER TABLE `boardtype`
 --
 ALTER TABLE `devices`
   ADD PRIMARY KEY (`DEVICEID`),
-  ADD UNIQUE KEY `UK_DEVICE_NAME` (`DEVICENAME`),
+  ADD UNIQUE KEY `UK_DEVICE_NAME` (`DEVICENAME`, `USERID`),
+  ADD UNIQUE KEY `UK_DEVICE_UNIQUE_ID` (`UNIQUEID`),
   ADD KEY `FK_DEVICE_BOARD` (`BOARDID`),
   ADD KEY `FK_DEVICE_USER` (`USERID`);
 

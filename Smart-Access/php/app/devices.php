@@ -11,6 +11,7 @@ namespace ES\SA;
 
 use ES\Core\AuthManager;
 use ES\Core\SQLConnection;
+use Utils\General;
 
 class Devices {
 
@@ -23,8 +24,9 @@ class Devices {
    }
 
    static function SaveItemToDB($aParams) {
-      if (1 === SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID, USERID, LAYOUTINDEX) VALUES('%s', %d, %d, %d)",
-         $aParams[0], $aParams[1], AuthManager::getUserID(), $aParams[2])
+      if (1 === SQLConnection::ExecuteQueryEx("INSERT INTO devices (DEVICENAME, BOARDID, USERID, LAYOUTINDEX, UNIQUEID) VALUES('%s', %d, %d, %d, '%s')",
+         $aParams[0], $aParams[1], AuthManager::getUserID(), $aParams[2], 
+         General::GenGUIDv4())
       ) {
          echo cGEN_SUCCESS;
       } else {

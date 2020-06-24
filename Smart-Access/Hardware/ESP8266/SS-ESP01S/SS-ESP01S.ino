@@ -17,6 +17,7 @@ const char cWiFiName[] = "SS-ESP01S-Relay";
 const char cWiFiPass[] = "trytest123";
 
 const String cDeviceID = "1";
+const String cDeviceUniqueID = "0838bef7-929f-4563-9da7-2ae32b4b38db";
 // Enter a unique topic name to which this device subscribe
 const String cMQTTSubTopic = "SmartHome/DevSub-" + cDeviceID;
 
@@ -80,7 +81,7 @@ void loop() {
   mqttClient.loop();
 
   if (!processWebResponds()) {
-    eSHClient.fetchData("{MYUID}", "NOData");
+    eSHClient.fetchData(cDeviceUniqueID, "NOData" /* No data to send at this stage */);
   }
 }
 

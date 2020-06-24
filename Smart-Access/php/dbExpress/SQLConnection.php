@@ -14,6 +14,7 @@ use InvalidArgumentException;
 use mysqli;
 
 include_once __DIR__ . "/../config.php";
+include_once __DIR__ . "/../auth/AuthManager.php";
 
   class SQLConnection extends mysqli {
 
