@@ -25,8 +25,8 @@
 
 ### Hardware Requirements 
 ![](https://img.shields.io/badge/ESP01S-ESP8266-red)
-![](https://img.shields.io/badge/USB%20to%20TTL%20converter-ESP01S%20Programmer-red)
-![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)
+[![](https://img.shields.io/badge/USB%20to%20TTL%20converter-ESP01S%20Programmer-red)](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S)
+[![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)](https://erratums.com/ocart2/category-relays)
 ![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)
 
 ### Languages used 
