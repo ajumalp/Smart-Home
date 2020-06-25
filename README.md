@@ -26,6 +26,11 @@
 [![](https://img.shields.io/badge/PHP%20Debug-Felix%20Becker-blueviolet)](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug#review-details)
 [![](https://img.shields.io/badge/PHP%20Intelephense-Ben%20Mewburn-blueviolet)](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client#review-details)
 
+### Hardware Requirements 
+![](https://img.shields.io/badge/ESP01S-ESP8266-red)
+![](https://img.shields.io/badge/USB%20to%20TTL%20converter-ESP01S%20Programmer-red)
+![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)
+![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)
 
 # Automate your Home/Office      
 _This application helps to control electronic devices remotely. This can be installed in your localnetwork, and if you have a static IP you can access your devices from any where. You need a WiFi/Ethernet at Home/Office to connect Arduino devices. Then from your phone, you can control connected appliances_    
