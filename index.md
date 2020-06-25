@@ -64,11 +64,27 @@ _This application helps to control electronic devices remotely. This can be inst
     </tr>
 </table>      
 
-### How to program devices    
+## Installing Software    
+1. Install XAMPP with Apache MySQL [Download here](https://www.apachefriends.org/download.html)
+1. Install Mosquitto MQTT [Doanload here](https://mosquitto.org/download/)
+1. Download the complete source code and place it inside XAMPP/htdocs folder. [You should place it inside a folder say "sa"]
+1. Make sure XAMPP is installed properly and also Apache and MySQL is working. Link [localhost/phpmyadmin](http://localhost/phpmyadmin/) should open MySQL Manager 
+1. Inside the [res/db](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/res/db) fodler you can see the query to create the tables. 
+1. Execute this query in [phpmyadmin](http://localhost/phpmyadmin/server_sql.php). You can see the tables created      
+![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sql-tables.png)      
+1. The MySQL user and password will be automatically set in the above query. If you want to set a different password, you can change it in the config file 
+1. Now run the **mosquitto.exe** file in the **mosquitto** folder you installed earlier 
+1. It should be ready now. Open the [**index.html**](http://localhost/sa/index.html) in the [htdocs/sa](http://localhost/sa/) folder in your Google Chrome. [I tested this in Google Chrome only, so I suggest you to use Google Chrome]
+1. You will see the Main Screen now. You should move to **Devices** screen and add device before adding switchs.
+
+### How to program devices     
+>[Click here to learn more](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-Devices)       
+     
+**There are different types of ESP8266 modules. Here we are mainly using the ESP01S with the relay relay modules**      
+      
 > If you don't know how to install ESP8266 into Arduino IDE, please refer this link    
 [**_How to install ESP8266 in Arduino_**](https://github.com/ajumalp/Smart-Home/wiki/How-to-Install-esp8266-on-Arduino)     
 
-There are different types of ESP8266 modules. Here we are mainly using the ESP01S with the relay relay modules    
 > If you don't know how to program ESP01S, please refer this link    
 [**_How to program ESP01S_**](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S)
 
@@ -93,6 +109,5 @@ Once you have the programmer or TTL to USB converter you can start programming E
 1. Select the Board Type as **ESP8266 Generic**
 1. Select the port 
 1. Upload the code 
-
-
+      
 **_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
