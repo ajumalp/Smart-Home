@@ -30,7 +30,15 @@ _This application helps to control electronic devices remotely. This can be inst
 ![](https://img.shields.io/badge/ESP01S-ESP8266-red)
 ![](https://img.shields.io/badge/USB%20to%20TTL%20converter-ESP01S%20Programmer-red)
 ![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)
-![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)      
+![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)
+
+### Languages used 
+![](https://img.shields.io/badge/Arduino-C++-00979D)
+![](https://img.shields.io/badge/PHP-7.2-blue)
+![](https://img.shields.io/badge/SQL-MySQL-blue)
+![](https://img.shields.io/badge/HTML-blue)
+![](https://img.shields.io/badge/Java%20Script-blue)
+![](https://img.shields.io/badge/CSS-blue)      
 
 ---    
     
