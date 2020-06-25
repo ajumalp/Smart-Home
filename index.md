@@ -40,6 +40,14 @@ _This application helps to control electronic devices remotely. This can be inst
 ![](https://img.shields.io/badge/Java%20Script-blue)
 ![](https://img.shields.io/badge/CSS-blue)      
 
+[![](https://img.shields.io/github/license/ajumalp/Smart-Home)](https://github.com/ajumalp/Smart-Home/blob/master/LICENSE.md)
+![](https://img.shields.io/github/issues-raw/ajumalp/Smart-Home)
+[![](https://img.shields.io/github/deployments/ajumalp/Smart-Home/github-pages)](https://ajumalp.github.io/Smart-Home/)
+![](https://img.shields.io/github/last-commit/ajumalp/Smart-Home)
+![](https://img.shields.io/github/languages/code-size/ajumalp/Smart-Home)
+![](https://img.shields.io/github/repo-size/ajumalp/Smart-Home)
+![](https://img.shields.io/github/stars/ajumalp/Smart-Home?style=social)    
+
 ---    
     
 ### Below are few screnshots of the Application    
