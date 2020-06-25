@@ -23,7 +23,17 @@ _This application helps to control electronic devices remotely. This can be inst
 ## Below are few screnshots of the Application     
 |Main Screen [Android]|Main Screen [Other]|Devices|Main Menu|Login Screen|
 |-|-|-|-|-|
-|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-android-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-iphone-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-device-list.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-menu-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-login-screen.jpg)|
+|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-android-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-iphone-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-device-list.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-menu-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-login-screen.jpg)|     
+
+## Installing Software    
+1. Install XAMPP with Apache MySQL [Download here](https://www.apachefriends.org/download.html)
+1. Install Mosquitto MQTT [Doanload here](https://mosquitto.org/download/)
+1. Download the complete source code and place it inside XAMPP/htdocs folder. [You should place it inside a folder say "sa"]
+1. Make sure XAMPP is installed properly and also Apache and MySQL is working. Link [localhost/phpmyadmin](http://localhost/phpmyadmin/) should open MySQL Manager 
+1. Inside the [res/db](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/res/db) fodler you can see the query to create the tables. 
+1. Execute this query in [phpmyadmin](http://localhost/phpmyadmin/server_sql.php). You can see the tables created      
+![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sql-tables.png)      
+1. The MySQL user and password will be automatically set in the above query. If you want to set a different password, you can change it in the config file 
 
 ## Below are few supporting Devices     
 |1 Channel Module|1 Channel Module|4 Channel Module|1 Channel Module|
