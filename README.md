@@ -5,9 +5,6 @@
     <a href="https://erratums.com"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>
 </p>
 
-> **_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
----     
-
 ## Development tools required 
 [![](https://img.shields.io/badge/Visual%20Studio%20Code-1.46-blue)](https://code.visualstudio.com/)
 [![](https://img.shields.io/badge/Arduino%20IDE-1.8.12-00979D)](https://www.arduino.cc/en/Main/Software)
