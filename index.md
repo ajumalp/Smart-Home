@@ -95,5 +95,4 @@ Once you have the programmer or TTL to USB converter you can start programming E
 1. Upload the code 
 
 
-**_For more details, visit [WiKi Page](https://github.com/ajumalp/Smart-Home/wiki)_**    
----
+**_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
