@@ -38,18 +38,22 @@ There are different types of ESP8266 modules. Here we are mainly using the ESP01
 > If you don't know how to program ESP01S, please refer this link    
 [**_How to program ESP01S_**](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S)
 
-You need a USB to TTL Converter to program ESP01S or you can buy any ESP01S programmer     
-[![](https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-progrm.png)](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S)    
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <th>
+            <a href="https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S"><img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-progrm.png"/></a>
+        </th>
+        <th>
+            <img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-program-using-arduino-uno.png" width="50%"/>
+        </th>
+    </tr>
+</table>      
+You need a USB to TTL Converter to program ESP01S or you can buy any ESP01S programmer or you can also program ESP01S using [TTL converter in] Arduino Uno as shown.     
 
----     
-   
-You can also program ESP01S using [TTL converter in] Arduino Uno as below.    
 **_Please note: In the below image, the Tx or Arduino is directly connected to Rx of ESP01S which not recomended for long time use. You should use a 5v to 3v3 logic converter_**     
-<img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-program-using-arduino-uno.png" width="50%"/>    
 
----     
+Once you have the programmer or TTL to USB converter you can start programming ESP01S    
 
-Once you have the programmer or TTL to USB converter you can start programming ESP01S     
 1. Go to [Hardware](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/Hardware) folder
 1. Open the **SS-ESP01S.ino** in Arduino IDE
 1. Select the Board Type as **ESP8266 Generic**
