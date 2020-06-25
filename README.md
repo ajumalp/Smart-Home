@@ -8,7 +8,11 @@
 > **_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
 ---     
 
+## Development tools required 
 [![](https://img.shields.io/badge/Visual%20Studio%20Code-1.46-blue)](https://code.visualstudio.com/)
+[![](https://img.shields.io/badge/Arduino%20IDE-1.8.13-00979D)](https://www.arduino.cc/en/Main/Software)
+[![](https://img.shields.io/badge/XAMPP-3.2.4-F06F25)](https://www.apachefriends.org/download.html)
+![](https://img.shields.io/badge/PHP-7.2-8892BF)
 
 ### Visual Studio Code Extensions used 
 [![](https://img.shields.io/badge/Arduino-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino#review-details)
