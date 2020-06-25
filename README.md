@@ -29,6 +29,14 @@
 ![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)
 ![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)
 
+### Languages used 
+![](https://img.shields.io/badge/Arduino-C++-00979D)
+![](https://img.shields.io/badge/PHP-7.2-blue)
+![](https://img.shields.io/badge/SQL-MySQL-blue)
+![](https://img.shields.io/badge/HTML-blue)
+![](https://img.shields.io/badge/Java%20Script-blue)
+![](https://img.shields.io/badge/CSS-blue)
+
 # Automate your Home/Office      
 _This application helps to control electronic devices remotely. This can be installed in your localnetwork, and if you have a static IP you can access your devices from any where. You need a WiFi/Ethernet at Home/Office to connect Arduino devices. Then from your phone, you can control connected appliances_    
 
