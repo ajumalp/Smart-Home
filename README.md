@@ -53,6 +53,7 @@ _This application helps to control electronic devices remotely. This can be inst
 ![](https://img.shields.io/github/last-commit/ajumalp/Smart-Home)
 ![](https://img.shields.io/github/languages/code-size/ajumalp/Smart-Home)
 ![](https://img.shields.io/github/repo-size/ajumalp/Smart-Home)
+![](https://img.shields.io/github/downloads/ajumalp/Smart-Home/total)
 ![](https://img.shields.io/github/stars/ajumalp/Smart-Home?style=social)      
 
 ## Below are few screnshots of the Application     
