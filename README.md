@@ -14,6 +14,8 @@
 [![](https://img.shields.io/badge/XAMPP-3.2.4-F06F25)](https://www.apachefriends.org/download.html)
 ![](https://img.shields.io/badge/PHP-7.2%20[XAMPP]-8892BF)
 ![](https://img.shields.io/badge/MySQL-XAMPP-4479A1)
+[![](https://img.shields.io/badge/MQTT-Mosquitto-blueviolet)](https://mosquitto.org/download/)
+[![](https://img.shields.io/badge/Onsen%20UI-2.10-F02E29)](https://onsen.io/)
 
 ### Visual Studio Code Extensions used 
 [![](https://img.shields.io/badge/Arduino-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino#review-details)
