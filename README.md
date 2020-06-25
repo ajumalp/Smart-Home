@@ -6,7 +6,19 @@
 </p>
 
 > **_For more details, visit [WiKi Pages](https://github.com/ajumalp/Smart-Home/wiki)_**    
----
+---     
+
+[![](https://img.shields.io/badge/Visual%20Studio%20Code-1.46-blue)](https://code.visualstudio.com/)
+
+### Visual Studio Code Extensions used 
+[![](https://img.shields.io/badge/Arduino-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino#review-details)
+[![](https://img.shields.io/badge/C%2FC%2B%2B-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools#review-details)
+[![](https://img.shields.io/badge/Debugger%20For%20Chrome-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome#review-details)
+[![](https://img.shields.io/badge/HTML%20CSS%20Support-ecmel-lightgrey)](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css#review-details)
+[![](https://img.shields.io/badge/JavaScript%20(ES6)%20code%20snippets-charalampos%20karypidis-yellow)](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets#review-details)
+[![](https://img.shields.io/badge/PHP%20Debug-Felix%20Becker-blueviolet)](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug#review-details)
+[![](https://img.shields.io/badge/PHP%20Intelephense-Ben%20Mewburn-blueviolet)](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client#review-details)
+
 
 # Automate your Home/Office      
 _This application helps to control electronic devices remotely. This can be installed in your localnetwork, and if you have a static IP you can access your devices from any where. You need a WiFi/Ethernet at Home/Office to connect Arduino devices. Then from your phone, you can control connected appliances_    
