@@ -6,7 +6,31 @@ _This application helps to control electronic devices remotely. This can be inst
 1. This support PWA [Progressive Web App]. So that this can be easily installed into any OS supporting PWA
 1. The Arduino code for the devices is als oincluded in the [Hardware](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/Hardware) folder. 
 1. Mainly supporting [ESP8266](https://github.com/Erratums/ESP8266/wiki) devices 
-1. You are always free to modify the code for your requirements 
+1. You are always free to modify the code for your requirements     
+
+## Development tools required 
+[![](https://img.shields.io/badge/Visual%20Studio%20Code-1.46-blue)](https://code.visualstudio.com/)
+[![](https://img.shields.io/badge/Arduino%20IDE-1.8.12-00979D)](https://www.arduino.cc/en/Main/Software)
+[![](https://img.shields.io/badge/XAMPP-3.2.4-F06F25)](https://www.apachefriends.org/download.html)
+![](https://img.shields.io/badge/PHP-7.2%20[XAMPP]-8892BF)
+![](https://img.shields.io/badge/MySQL-XAMPP-4479A1)
+[![](https://img.shields.io/badge/MQTT-Mosquitto-blueviolet)](https://mosquitto.org/download/)
+[![](https://img.shields.io/badge/Onsen%20UI-2.10-F02E29)](https://onsen.io/)
+
+### Visual Studio Code Extensions used 
+[![](https://img.shields.io/badge/Arduino-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino#review-details)
+[![](https://img.shields.io/badge/C%2FC%2B%2B-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools#review-details)
+[![](https://img.shields.io/badge/Debugger%20For%20Chrome-Microsoft-blue)](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome#review-details)
+[![](https://img.shields.io/badge/HTML%20CSS%20Support-ecmel-lightgrey)](https://marketplace.visualstudio.com/items?itemName=ecmel.vscode-html-css#review-details)
+[![](https://img.shields.io/badge/JavaScript%20(ES6)%20code%20snippets-charalampos%20karypidis-yellow)](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets#review-details)
+[![](https://img.shields.io/badge/PHP%20Debug-Felix%20Becker-blueviolet)](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug#review-details)
+[![](https://img.shields.io/badge/PHP%20Intelephense-Ben%20Mewburn-blueviolet)](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client#review-details)
+
+### Hardware Requirements 
+![](https://img.shields.io/badge/ESP01S-ESP8266-red)
+![](https://img.shields.io/badge/USB%20to%20TTL%20converter-ESP01S%20Programmer-red)
+![](https://img.shields.io/badge/Relay%20Module-Single%20or%20Multi%20Channel-red)
+![](https://img.shields.io/badge/Power%20Supply-5%20Volt-red)      
 
 ---    
     
