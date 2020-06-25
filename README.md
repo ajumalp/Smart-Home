@@ -45,9 +45,15 @@ _This application helps to control electronic devices remotely. This can be inst
 1. This support PWA [Progressive Web App]. So this can be easily installed into any OS supporting PWA
 1. The Arduino code for the devices is also included in the [Hardware](https://github.com/ajumalp/Smart-Home/tree/master/Smart-Access/Hardware) folder. 
 1. Mainly supporting [ESP8266](https://github.com/Erratums/ESP8266/wiki) devices 
-1. You are always free to modify the code for your requirements 
+1. You are always free to modify the code for your requirements       
 
----    
+![](https://img.shields.io/github/license/ajumalp/Smart-Home)
+![](https://img.shields.io/github/issues-raw/ajumalp/Smart-Home)
+[![](https://img.shields.io/github/deployments/ajumalp/Smart-Home/github-pages)](https://ajumalp.github.io/Smart-Home/)
+![](https://img.shields.io/github/last-commit/ajumalp/Smart-Home)
+![](https://img.shields.io/github/languages/code-size/ajumalp/Smart-Home)
+![](https://img.shields.io/github/repo-size/ajumalp/Smart-Home)
+![](https://img.shields.io/github/stars/ajumalp/Smart-Home?style=social)     
     
 ## Below are few screnshots of the Application     
 |Main Screen [Android]|Main Screen [Other]|Devices|Main Menu|Login Screen|
