@@ -25,6 +25,13 @@ _This application helps to control electronic devices remotely. This can be inst
 |-|-|-|-|-|
 |![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-android-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-iphone-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-device-list.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-menu-screen.jpg)|![Main Screen](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sa-login-screen.jpg)|     
 
+## Below are few supporting Devices     
+|1 Channel Module|1 Channel Module|4 Channel Module|1 Channel Module|
+|-|-|-|-|
+|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/1-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/2-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/4-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/esp8266-1-ch-relay-module.png)|
+
+---    
+
 ## Installing Software    
 1. Install XAMPP with Apache MySQL [Download here](https://www.apachefriends.org/download.html)
 1. Install Mosquitto MQTT [Doanload here](https://mosquitto.org/download/)
@@ -34,13 +41,6 @@ _This application helps to control electronic devices remotely. This can be inst
 1. Execute this query in [phpmyadmin](http://localhost/phpmyadmin/server_sql.php). You can see the tables created      
 ![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Screenshots/sql-tables.png)      
 1. The MySQL user and password will be automatically set in the above query. If you want to set a different password, you can change it in the config file 
-
-## Below are few supporting Devices     
-|1 Channel Module|1 Channel Module|4 Channel Module|1 Channel Module|
-|-|-|-|-|
-|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/1-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/2-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/4-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/esp8266-1-ch-relay-module.png)|
-
----
 
 ### How to program devices     
 >[Click here to learn more](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-Devices)       
