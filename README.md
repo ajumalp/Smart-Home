@@ -30,10 +30,12 @@ _This application helps to control electronic devices remotely. This can be inst
 |-|-|-|-|
 |![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/1-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/2-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/4-ch-relay-module.png)|![](https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Devices/esp8266-1-ch-relay-module.png)|
 
-### How to program devices. [Learn More ...](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-Devices)       
+---
+
+### How to program devices     
+>[Click here to learn more](https://github.com/ajumalp/Smart-Home/wiki/How-to-program-Devices)       
      
 **There are different types of ESP8266 modules. Here we are mainly using the ESP01S with the relay relay modules**      
-      
       
 > If you don't know how to install ESP8266 into Arduino IDE, please refer this link    
 [**_How to install ESP8266 in Arduino_**](https://github.com/ajumalp/Smart-Home/wiki/How-to-Install-esp8266-on-Arduino)     
