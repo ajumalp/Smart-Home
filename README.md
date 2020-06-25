@@ -47,13 +47,13 @@ _This application helps to control electronic devices remotely. This can be inst
 1. Mainly supporting [ESP8266](https://github.com/Erratums/ESP8266/wiki) devices 
 1. You are always free to modify the code for your requirements       
 
-![](https://img.shields.io/github/license/ajumalp/Smart-Home)
+[![](https://img.shields.io/github/license/ajumalp/Smart-Home)](https://github.com/ajumalp/Smart-Home/blob/master/LICENSE.md)
 ![](https://img.shields.io/github/issues-raw/ajumalp/Smart-Home)
 [![](https://img.shields.io/github/deployments/ajumalp/Smart-Home/github-pages)](https://ajumalp.github.io/Smart-Home/)
 ![](https://img.shields.io/github/last-commit/ajumalp/Smart-Home)
 ![](https://img.shields.io/github/languages/code-size/ajumalp/Smart-Home)
 ![](https://img.shields.io/github/repo-size/ajumalp/Smart-Home)
-![](https://img.shields.io/github/stars/ajumalp/Smart-Home?style=social)     
+![](https://img.shields.io/github/stars/ajumalp/Smart-Home?style=social)       
     
 ## Below are few screnshots of the Application     
 |Main Screen [Android]|Main Screen [Other]|Devices|Main Menu|Login Screen|
