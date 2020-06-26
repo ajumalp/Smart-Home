@@ -1,8 +1,11 @@
-<h1 align="center">Smart Home</h1>
+<a href="https://smartaccess.erratums.com/?platform=android"><h1 align="center">Smart Home</h1></a>
 <h4 align="center">Complete solution for home automation</h4>
 
 <p align="center">
-    <a href="https://erratums.com"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>
+    <a href="https://erratums.com"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>    
+</p>
+<p align="center">
+    <a href="https://smartaccess.erratums.com/?platform=android"><img alt="Logo" src="https://img.shields.io/badge/Live%20Demo-v1.0-red"></a>    
 </p>
 
 ## Development tools required 
@@ -47,6 +50,7 @@ _This application helps to control electronic devices remotely. This can be inst
 1. Mainly supporting [ESP8266](https://github.com/Erratums/ESP8266/wiki) devices 
 1. You are always free to modify the code for your requirements 
 
+[![](https://img.shields.io/badge/Live%20Demo-v1.0-red)](https://smartaccess.erratums.com/?platform=android)
 [![](https://img.shields.io/github/license/ajumalp/Smart-Home)](https://github.com/ajumalp/Smart-Home/blob/master/LICENSE.md)
 [![](https://img.shields.io/github/deployments/ajumalp/Smart-Home/github-pages)](https://ajumalp.github.io/Smart-Home/)
 ![](https://img.shields.io/github/last-commit/ajumalp/Smart-Home)
