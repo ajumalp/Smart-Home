@@ -104,6 +104,14 @@ CREATE TABLE `options` (
   `OPT_VALUE` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_HOST', '127.0.0.1');
+INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_PORT', '1883');
+INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_PATH', '');
+
 -- --------------------------------------------------------
 
 --
