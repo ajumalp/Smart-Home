@@ -52,6 +52,22 @@ class Devices {
       );
    }
 
+   showDetails(aDeviceID, aUniqueID) {
+      myApp.services.message.openActionSheet({
+         title: 'Device Details',
+         cancelable: true,
+         buttons: ['Device ID: ' + aDeviceID, 'Copy Unique ID', 'Close']
+      }, function (aIndex) {
+         if (aIndex === 1) {
+            if (navigator.clipboard) {
+               navigator.clipboard.writeText(aUniqueID);
+            } else {
+               window.prompt("Copy to clipboard: Ctrl+C, Enter", aUniqueID);
+            }
+         }
+      });
+   }
+
    editDevice(aDeviceID) {
       myApp.services.message.alert('This feature is still not implimented');
       return;
@@ -177,7 +193,7 @@ class Devices {
          myApp.services.message.openActionSheet({
             title: 'Manage Device',
             cancelable: true,
-            buttons: ['Edit', 'Move to', 'Delete', 'Cancel']
+            buttons: ['Edit', 'Move to', 'Delete', 'Show Details', 'Cancel']
          }, function (aIndex) {
             switch (aIndex) {
                case 0:
@@ -188,6 +204,9 @@ class Devices {
                   break;
                case 2:
                   varThis.deleteItem(aItemData.DEVICEID);
+                  break;
+               case 3:
+                  varThis.showDetails(aItemData.DEVICEID, aItemData.UNIQUEID);
                   break;
             }
          });
