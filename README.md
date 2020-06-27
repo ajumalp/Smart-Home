@@ -1,11 +1,11 @@
-<a href="https://smartaccess.erratums.com/?platform=android" target="_blank"><h1 align="center">Smart Home</h1></a>
+<a href="https://smartaccess.erratums.com/?platform=android"><h1 align="center">Smart Home</h1></a>
 <h4 align="center">Complete solution for home automation</h4>
 
 <p align="center">
-    <a href="https://erratums.com" target="_blank"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>
+    <a href="https://erratums.com"><img alt="Logo" src="https://raw.githubusercontent.com/ajumalp/Smart-Home/master/Other/Images/Logo/erratums%20128x128.png" width="100"></a>    
 </p>
 <p align="center">
-    <a href="https://smartaccess.erratums.com/?platform=android" target="_blank"><img alt="Logo" src="https://img.shields.io/badge/Live%20Demo-v1.0-red"></a>    
+    <a href="https://smartaccess.erratums.com/?platform=android"><img alt="Logo" src="https://img.shields.io/badge/Live%20Demo-v1.0-red"></a>    
 </p>
 
 ## Development tools required 
@@ -96,7 +96,7 @@ _This application helps to control electronic devices remotely. This can be inst
 <table cellspacing="0" cellpadding="0">
     <tr>
         <th>
-            <a href="https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S" target="_blank"><img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-progrm.png"/></a>
+            <a href="https://github.com/ajumalp/Smart-Home/wiki/How-to-program-ESP01S"><img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-progrm.png"/></a>
         </th>
         <th>
             <img src="https://raw.githubusercontent.com/Erratums/ESP8266/master/images/esp01-program-using-arduino-uno.png" width="50%"/>
