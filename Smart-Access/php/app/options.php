@@ -10,6 +10,8 @@
 namespace ES\SA;
 
 use ES\Core\SQLConnection;
+use Exception;
+use Throwable;
 
 class Options {
 
@@ -28,7 +30,10 @@ class Options {
                $sqlConn->query($varQuery);
             }
             $sqlConn->autocommit(true);
-         } catch (\Throwable $th) {
+         } catch (Throwable $th) {
+            $sqlConn->rollback();
+            $sqlConn->autocommit(true);
+         } catch (Exception $ex) {
             $sqlConn->rollback();
             $sqlConn->autocommit(true);
          }

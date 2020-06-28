@@ -3,13 +3,13 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:/Users/ajmalp/AppData/Local/Arduino15/packages/esp8266/tools/**",
-                "C:/Users/ajmalp/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/**",
-                "C:/Users/ajmalp/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src",
-                "C:/Users/ajmalp/Documents/Arduino/libraries/PubSubClient/src",
-                "C:/Users/ajmalp/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src",
-                "C:\\Users\\ajmalp\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.1\\**",
-                "C:\\Users\\ajmalp\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**"
+                "C:/Users/HP/AppData/Local/Arduino15/packages/esp8266/tools/**",
+                "C:/Users/HP/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/**",
+                "C:/Users/HP/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WebServer/src",
+                "C:/Users/HP/Documents/Arduino/libraries/PubSubClient/src",
+                "C:/Users/HP/AppData/Local/Arduino15/packages/esp8266/hardware/esp8266/2.7.1/libraries/ESP8266WiFi/src",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.1\\**",
+                "C:\\Users\\HP\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**"
             ],
             "forcedInclude": [],
             "intelliSenseMode": "msvc-x64"
