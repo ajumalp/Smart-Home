@@ -108,9 +108,9 @@ CREATE TABLE `options` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_HOST', '127.0.0.1');
-INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_PORT', '1883');
-INSERT INTO `options` (`OPT_NAME`, `OPT_VALUE`) VALUES('MQTT_PATH', '');
+INSERT INTO `options` (`OID`, `OPT_NAME`, `OPT_VALUE`) VALUES(1, 'MQTT_HOST', '127.0.0.1');
+INSERT INTO `options` (`OID`, `OPT_NAME`, `OPT_VALUE`) VALUES(2, 'MQTT_PORT', '1883');
+INSERT INTO `options` (`OID`, `OPT_NAME`, `OPT_VALUE`) VALUES(3, 'MQTT_PATH', '');
 
 -- --------------------------------------------------------
 
@@ -196,7 +196,7 @@ ALTER TABLE `gadgets`
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
-  MODIFY `OID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
